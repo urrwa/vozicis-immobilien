@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Manrope', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #8B9CB3;
+    background-color: #050B16;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
+    color: #FFFFFF;
+    letter-spacing: -0.025em;
+  }
+
+  .font-brand-crest {
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.18em;
+  }
+}
+
+/* Technical Dotted Grid Background inspired by architectural blueprinting & ARVENTAS reference */
+.bg-tech-grid {
+  background-image: radial-gradient(rgba(139, 156, 179, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bg-tech-grid-gold {
+  background-image: radial-gradient(rgba(214, 174, 112, 0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+/* Eyebrow with leading dash matching ARVENTAS screenshot (— STRATEGISCHE IMMOBILIENENTWICKLUNG) */
+.gold-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: #D6AE70;
+}
+.gold-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1px;
+  background-color: #D6AE70;
+  opacity: 0.9;
+}
+
+/* Custom subtle dark scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050B16;
+}
+::-webkit-scrollbar-thumb {
+  background: #162744;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1E3156;
+}
+
+/* Selection */
+::selection {
+  background: rgba(214, 174, 112, 0.3);
+  color: #FFFFFF;
+}
+
+/* Subtle architectural hover zoom */
+.img-zoom-architectural {
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+}
+.group:hover .img-zoom-architectural {
+  transform: scale(1.03);
+}
+
+

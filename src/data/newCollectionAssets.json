@@ -1,0 +1,50 @@
+[
+  {
+    "publicId": "19",
+    "filename": "19.png",
+    "localPath": "/images/brand/19.png",
+    "cdnUrl": "https://res.cloudinary.com/yqpz5zob/image/upload/v1789222279/19.png?_s=public-apps",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "publicId": "magnific_use-the-uploaded-referenc_hur9SGHvqL",
+    "filename": "magnific_use-the-uploaded-referenc_hur9SGHvqL.png",
+    "localPath": "/images/brand/magnific_use-the-uploaded-referenc_hur9SGHvqL.png",
+    "cdnUrl": "https://res.cloudinary.com/yqpz5zob/image/upload/v1789222277/magnific_use-the-uploaded-referenc_hur9SGHvqL.png?_s=public-apps",
+    "width": 1376,
+    "height": 768
+  },
+  {
+    "publicId": "magnific_hyperrealistic-portrait-o_1l4o4Xjr4r",
+    "filename": "magnific_hyperrealistic-portrait-o_1l4o4Xjr4r.png",
+    "localPath": "/images/brand/magnific_hyperrealistic-portrait-o_1l4o4Xjr4r.png",
+    "cdnUrl": "https://res.cloudinary.com/yqpz5zob/image/upload/v1789222277/magnific_hyperrealistic-portrait-o_1l4o4Xjr4r.png?_s=public-apps",
+    "width": 1584,
+    "height": 672
+  },
+  {
+    "publicId": "magnific_use-the-uploaded-referenc_s73pV29l8e",
+    "filename": "magnific_use-the-uploaded-referenc_s73pV29l8e.png",
+    "localPath": "/images/brand/magnific_use-the-uploaded-referenc_s73pV29l8e.png",
+    "cdnUrl": "https://res.cloudinary.com/yqpz5zob/image/upload/v1789222276/magnific_use-the-uploaded-referenc_s73pV29l8e.png?_s=public-apps",
+    "width": 928,
+    "height": 1152
+  },
+  {
+    "publicId": "19_1",
+    "filename": "19_1.png",
+    "localPath": "/images/brand/19_1.png",
+    "cdnUrl": "https://res.cloudinary.com/yqpz5zob/image/upload/v1789222276/19_1.png?_s=public-apps",
+    "width": 1024,
+    "height": 1024
+  },
+  {
+    "publicId": "15",
+    "filename": "15.png",
+    "localPath": "/images/brand/15.png",
+    "cdnUrl": "https://res.cloudinary.com/yqpz5zob/image/upload/v1789222276/15.png?_s=public-apps",
+    "width": 1024,
+    "height": 1024
+  }
+]
