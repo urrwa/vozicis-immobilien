@@ -126,10 +126,30 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
           </div>
         </div>
 
-        <nav aria-label={t('Investoren-Journey Stufen')} className="flex flex-wrap items-center gap-1 sm:gap-2 mb-6">
-          <button type="button" aria-label={t('Vorherige Stufe')} disabled={selectedStep === 0} onClick={() => setSelectedStep(s => s - 1)} className="p-2 sm:p-3 rounded-full border border-[#D6AE70]/40 text-[#D6AE70] disabled:opacity-30"><ChevronLeft size={20} /></button>
-          {stages.map((stage, idx) => <button type="button" key={stage.step} aria-label={t(stage.title)} aria-current={idx === selectedStep ? 'step' : undefined} onClick={() => setSelectedStep(idx)} className={`w-8 h-10 sm:w-12 sm:h-12 rounded-full text-sm border transition-colors ${idx === selectedStep ? 'bg-[#D6AE70] text-[#050B16] border-[#D6AE70]' : 'border-[#162744] text-[#8B9CB3] hover:border-[#D6AE70]'}`}>{stage.step}</button>)}
-          <button type="button" aria-label={t('Nächste Stufe')} disabled={selectedStep === stages.length - 1} onClick={() => setSelectedStep(s => s + 1)} className="p-2 sm:p-3 rounded-full border border-[#D6AE70]/40 text-[#D6AE70] disabled:opacity-30"><ChevronRight size={20} /></button>
+        <nav aria-label={t('Investoren-Journey Stufen')} className="mb-12 overflow-x-auto pb-2">
+          <div className="flex gap-3 min-w-[760px] h-[300px]">
+            {stages.map((stage, idx) => {
+              const active = idx === selectedStep;
+              return <button key={stage.step} type="button" aria-label={t(stage.title)} aria-current={active ? 'step' : undefined}
+                onClick={() => setSelectedStep(idx)}
+                className={`relative min-w-0 overflow-hidden rounded-[24px] border text-left transition-all duration-500 focus-visible:outline-2 focus-visible:outline-[#D6AE70] ${active ? 'flex-[4] border-[#D6AE70]' : 'flex-1 border-[#162744] hover:border-[#D6AE70]/60'}`}>
+                <SectionPhoto group="journey" index={idx} />
+                <div className={`absolute inset-0 bg-gradient-to-t from-[#050B16] via-[#050B16]/20 to-[#050B16]/20 transition-opacity ${active ? 'opacity-85' : 'opacity-95 bg-[#050B16]/50'}`} />
+                {active ? <>
+                  <span className="absolute top-6 left-5 rounded-full bg-[#050B16]/85 px-3 py-1 text-[10px] text-[#D6AE70] font-mono">{t('STUFE ')}{stage.step} · {t(stage.badge)}</span>
+                  <ArrowRight className="absolute top-6 right-5 rounded-full bg-[#050B16]/80 p-2 text-[#D6AE70] -rotate-45" size={36} />
+                  <div className="absolute bottom-6 left-5 right-5 flex items-start gap-3">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#D6AE70] text-[#050B16] text-xs font-bold">{stage.step}</span>
+                    <div><div className="text-xl font-bold text-white">{t(stage.title)}</div><div className="mt-1 text-xs text-[#D6AE70]">{t(stage.subtitle)}</div></div>
+                  </div>
+                </> : <>
+                  <span className="absolute top-4 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-[#D6AE70]/60" />
+                  <span className="absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-[0.18em] text-white/80"><span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>{t(stage.title)}</span></span>
+                  <span className="absolute bottom-5 left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-[#050B16]/85 text-xs text-[#B9C6D7]">{stage.step}</span>
+                </>}
+              </button>;
+            })}
+          </div>
         </nav>
 
         {/* Detailed Active Stage Premium Card */}
