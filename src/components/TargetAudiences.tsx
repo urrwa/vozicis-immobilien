@@ -1,4 +1,4 @@
-import { TopicVisual } from './TopicVisual';
+import { SectionPhoto } from './SectionPhoto';
 import { useLanguage } from '../i18n/LanguageContext';
 import React from 'react';
 import { 
@@ -212,7 +212,7 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
 
                       {/* Right Column: Approx 45% Cinematic Stage Photography */}
                       <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] lg:min-h-full rounded-2xl overflow-hidden bg-[#050B16] border border-[#162744]/70">
-                        <TopicVisual index={Number(cat.stepNum) + 3} title={cat.name} labels={cat.keyMetrics.map(m => m.label)} />
+                        <SectionPhoto group="audiences" index={Number(cat.stepNum) - 1} />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#050B16] via-transparent to-black/25 pointer-events-none" />
 
                         <div className="absolute bottom-3.5 left-3.5 right-3.5 z-10 px-3.5 py-2 rounded-xl bg-[#050B16]/85 backdrop-blur-md border border-[#162744] text-xs text-[#8B9CB3] font-light truncate">

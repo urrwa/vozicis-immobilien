@@ -1,4 +1,4 @@
-import { TopicVisual } from './TopicVisual';
+import { SectionPhoto } from './SectionPhoto';
 import { useLanguage } from '../i18n/LanguageContext';
 import React, { useState } from 'react';
 import { OPPORTUNITIES } from '../data/mockData';
@@ -92,7 +92,7 @@ export const OpportunitiesShowcase: React.FC<OpportunitiesShowcaseProps> = ({
               
               {/* Large Image Showcase */}
               <div className="lg:col-span-7 relative min-h-[380px] lg:min-h-auto overflow-hidden bg-[#050B16]">
-                <TopicVisual index={Number(flagshipOpp.id.replace('opp-', ''))} title={flagshipOpp.assetType} labels={[flagshipOpp.location]} />
+                <SectionPhoto group="opportunities" index={Number(flagshipOpp.id.replace('opp-', '')) - 1} illustrative />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#0A1324]" />
                 
                 <div className="absolute top-6 left-6 flex items-center gap-2">
@@ -158,7 +158,7 @@ export const OpportunitiesShowcase: React.FC<OpportunitiesShowcaseProps> = ({
               <div>
                 {/* Visual Image */}
                 <div className="relative min-h-[300px] overflow-hidden bg-[#050B16]">
-                  <TopicVisual index={Number(opp.id.replace('opp-', ''))} title={opp.assetType} labels={[opp.location]} />
+                  <SectionPhoto group="opportunities" index={Number(opp.id.replace('opp-', '')) - 1} illustrative />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-transparent to-transparent" />
                   
                   <div className="absolute top-4 left-4">
@@ -235,8 +235,8 @@ export const OpportunitiesShowcase: React.FC<OpportunitiesShowcaseProps> = ({
                 </p>
               </div>
 
-              <div className="min-h-[260px] w-full rounded-xl overflow-hidden bg-[#050B16]">
-                <TopicVisual index={Number(selectedOpp.id.replace('opp-', ''))} title={selectedOpp.assetType} labels={[selectedOpp.location]} />
+              <div className="relative min-h-[260px] w-full rounded-xl overflow-hidden bg-[#050B16]">
+                <SectionPhoto group="opportunities" index={Number(selectedOpp.id.replace('opp-', '')) - 1} illustrative />
               </div>
 
               <p className="text-sm text-[#8B9CB3] leading-relaxed font-light">

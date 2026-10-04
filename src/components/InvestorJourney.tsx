@@ -1,3 +1,4 @@
+import { SectionPhoto } from './SectionPhoto';
 import { useLanguage } from '../i18n/LanguageContext';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -198,19 +199,11 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
               </div>
 
               {/* Right Column: approx 52% photographic showcase */}
-              <div className="w-full lg:w-[52%] relative flex flex-col justify-center min-h-[300px] overflow-hidden bg-[#050B16]">
-                <img
-                  src={localizedImage(current.image)}
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src = current.fallback;
-                  }}
-                  alt={t(current.title)}
-                  className="w-full h-auto object-contain"
-                  style={{ objectPosition: "center" }}
-                />
+              <div className="w-full lg:w-[52%] relative flex flex-col justify-center min-h-[360px] overflow-hidden bg-[#050B16]">
+                <SectionPhoto group="journey" index={activeStep} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#0A1324]/50 lg:via-transparent lg:to-transparent pointer-events-none" />
 
-                <div className="relative mx-4 mb-4 z-10 px-4 py-2.5 rounded-xl bg-[#050B16]/85 backdrop-blur-md border border-[#162744] text-xs text-[#8B9CB3] font-light">
+                <div className="absolute bottom-4 left-4 right-4 z-10 px-4 py-2.5 rounded-xl bg-[#050B16]/85 backdrop-blur-md border border-[#162744] text-xs text-[#8B9CB3] font-light">
                   {t(current.caption)}
                 </div>
               </div>

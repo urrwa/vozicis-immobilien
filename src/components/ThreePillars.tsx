@@ -1,4 +1,4 @@
-import { TopicVisual } from './TopicVisual';
+import { SectionPhoto } from './SectionPhoto';
 import { useLanguage } from '../i18n/LanguageContext';
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
@@ -149,7 +149,7 @@ export const ThreePillars: React.FC<{ onOpenStrategyCheck: () => void }> = ({ on
             
             {/* Cinematic Imagery */}
             <div className="relative min-h-[300px] w-full overflow-hidden bg-[#050B16]">
-              <TopicVisual index={activePillar} title={current.title} labels={current.metrics.map(m => m.label)} />
+              <SectionPhoto group="pillars" index={activePillar} />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-transparent to-black/20 pointer-events-none" />
               
               <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#050B16]/80 backdrop-blur-md border border-[#162744] text-xs font-mono font-semibold text-[#D6AE70]">{t("SÄULE ")}{t(current.number)} · {t(current.title)}

@@ -1,3 +1,4 @@
+import { SectionPhoto } from './SectionPhoto';
 import { useLanguage } from '../i18n/LanguageContext';
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
@@ -148,8 +149,8 @@ export const BrandPhilosophy: React.FC<{ onOpenStrategyCheck: () => void }> = ({
           <div className="lg:col-span-7 rounded-2xl border border-[#162744] relative overflow-hidden flex flex-col justify-between min-h-[420px] bg-[#0A1324] shadow-2xl shadow-black/80">
             {/* Cinematic Background Image */}
             <div className="absolute inset-0 z-0">
-              <div className="absolute inset-0 bg-gradient-to-br from-[#12243b] via-[#0A1324] to-[#050B16]" aria-hidden="true" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-[#0A1324]/85 to-[#0A1324]/50" />
+              <SectionPhoto group="philosophy" index={selectedParam} />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-[#0A1324]/80 to-[#0A1324]/55" />
             </div>
 
             {/* Content Overlay */}

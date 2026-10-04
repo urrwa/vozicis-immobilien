@@ -1,4 +1,4 @@
-import { TopicVisual } from './TopicVisual';
+import { SectionPhoto } from './SectionPhoto';
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ROADMAP_PHASES } from '../data/mockData';
@@ -209,7 +209,7 @@ export const RoadmapView: React.FC = () => {
 
               {/* Right Column: Visual Stage for this Phase */}
               <div className="lg:col-span-5 relative aspect-[4/3] lg:aspect-auto overflow-hidden rounded-2xl bg-slate-950 min-h-[300px]">
-                <TopicVisual index={selectedPhaseIndex} title={currentPhase.headline} />
+                <SectionPhoto group="roadmap" index={selectedPhaseIndex} />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-xs text-slate-200 font-light bg-black/60 backdrop-blur-md p-3 rounded-xl border border-white/10">
                   {currentVisual.caption}

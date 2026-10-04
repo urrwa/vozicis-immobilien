@@ -1,4 +1,4 @@
-import { TopicVisual } from './TopicVisual';
+import { SectionPhoto } from './SectionPhoto';
 import { useLanguage } from '../i18n/LanguageContext';
 import React, { useState, useEffect, useRef } from 'react';
 import { CONTENT_ARTICLES } from '../data/mockData';
@@ -300,7 +300,7 @@ export const ContentLibrary: React.FC<ContentLibraryProps> = ({
                         onClick={() => setReadingArticle(pillar.article)}
                         className="relative min-h-[300px] w-full overflow-hidden bg-[#050B16] cursor-pointer group"
                       >
-                        <TopicVisual index={Number(pillar.pillarNumStr) - 1} title={pillar.badge} labels={[pillar.article.category]} />
+                        <SectionPhoto group="articles" index={Number(pillar.pillarNumStr) - 1} />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-transparent to-black/30 pointer-events-none" />
 
                         {/* Badges on mobile image */}
@@ -414,8 +414,8 @@ export const ContentLibrary: React.FC<ContentLibraryProps> = ({
               </div>
 
               {/* Cover Image in Modal */}
-              <div className="min-h-[260px] w-full rounded-xl overflow-hidden bg-[#050B16]">
-                <TopicVisual index={(readingArticle.pillarNumber || 1) - 1} title={readingArticle.category} />
+              <div className="relative min-h-[260px] w-full rounded-xl overflow-hidden bg-[#050B16]">
+                <SectionPhoto group="articles" index={(readingArticle.pillarNumber || 1) - 1} />
               </div>
 
               <div className="p-4 rounded-xl bg-[#0D182E] border border-[#D6AE70]/30 italic text-sm text-[#D6AE70]">
@@ -649,7 +649,7 @@ const PillarImageCard: React.FC<PillarImageCardProps> = ({
             : 'border-[#162744] opacity-60 hover:opacity-90'
       }`}
     >
-      <TopicVisual index={Number(pillar.pillarNumStr) - 1} title={pillar.badge} labels={[pillar.article.category]} />
+      <SectionPhoto group="articles" index={Number(pillar.pillarNumStr) - 1} />
       <div 
         className={`absolute inset-0 transition-opacity duration-500 pointer-events-none bg-gradient-to-t from-[#050B16] via-transparent to-black/20 ${
           isActive ? 'opacity-70' : 'opacity-85 group-hover:opacity-75'
