@@ -21,11 +21,11 @@ export const SECTION_PHOTOS = {
     stock(7644148, 'Geschäftspartner begrüßen sich im Büro', 'Business partners greeting each other in an office'),
   ],
   journey: [
-    stock(6285089, 'Erstes Kennenlernen bei einem Geschäftsgespräch', 'An introductory business meeting'),
-    stock(7658322, 'Gemeinsame Prüfung von Finanzunterlagen', 'Reviewing financial documents together'),
-    stock(36733326, 'Austausch in einem professionellen Netzwerk', 'Discussion within a professional network'),
+    { ...brand('magnific_use-the-uploaded-referenc_s73pV29l8e', 'Persönlicher Austausch mit Ioannis Vozicis', 'An introductory conversation with Ioannis Vozicis'), position: '50% 30%' },
+    { ...brand('magnific_hyperrealistic-image-of-i_s73hzYOl8e', 'Ioannis Vozicis erläutert die Immobilienstrategie', 'Ioannis Vozicis explaining a property strategy'), position: '50% 30%' },
+    { ...brand('08', 'Ioannis Vozicis im Kreis von Geschäftspartnern', 'Ioannis Vozicis with business partners'), position: '50% 25%' },
     brand('magnific_use-the-uploaded-referenc_hur9SGHvqL', 'Persönliche Beratung in der Lounge', 'Personal consultation in the lounge'),
-    stock(7641870, 'Besprechung eines passenden Immobiliengrundrisses', 'Discussing a suitable property floor plan', '50% 45%'),
+    { ...brand('15', 'Ioannis Vozicis stellt passende Immobilien vor', 'Ioannis Vozicis presenting suitable properties'), position: '50% 35%' },
     brand('17', 'Handschlag zum Abschluss einer Partnerschaft', 'Handshake marking a partnership'),
   ],
   articles: [
