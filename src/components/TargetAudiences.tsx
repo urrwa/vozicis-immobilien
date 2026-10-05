@@ -482,7 +482,7 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
                         {/* Card 01 Unternehmer — investment team video */}
                         {cat.id === 'unternehmer' && (
                           <video
-                            src="https://assets.mixkit.co/videos/5748/5748-720.mp4"
+                            src="https://assets.mixkit.co/videos/4813/4813-720.mp4"
                             autoPlay
                             loop
                             muted
