@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import {
   Sparkles
 } from 'lucide-react';
+import { BRAND_IMAGES } from '../data/brandAssets';
 
 interface InvestorJourneyProps {
   onOpenStrategyCheck: () => void;
