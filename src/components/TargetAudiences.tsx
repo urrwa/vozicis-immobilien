@@ -739,16 +739,14 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
                       {/* Right Column: per-card media */}
                       <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] lg:min-h-full rounded-2xl overflow-hidden bg-[#0A1324] border border-[#162744]/70">
 
-                        {/* Card 01 Unternehmer — investment team video */}
+                        {/* Card 01 Unternehmer — adviser reviewing floor plan with client */}
                         {cat.id === 'unternehmer' && (
-                          <video
-                            src="https://assets.mixkit.co/videos/4813/4813-720.mp4"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
+                          <img
+                            src="/images/sections/7641870.jpg"
+                            alt="Adviser and client reviewing a property floor plan at an oak table"
                             className="absolute inset-0 h-full w-full object-cover"
                             style={{ objectPosition: '50% 30%' }}
+                            loading="lazy"
                           />
                         )}
 
@@ -762,16 +760,14 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
                           <LegacyTimelineAnimation t={t} />
                         )}
 
-                        {/* Card 04 Strategische Partner — handshake video */}
+                        {/* Card 04 Strategische Partner — specialist team reviewing property documents */}
                         {cat.id === 'partner' && (
-                          <video
-                            src="https://assets.mixkit.co/videos/24047/24047-720.mp4"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
+                          <img
+                            src="/images/sections/36733326.jpg"
+                            alt="Three specialists collaboratively reviewing property documents at a meeting table"
                             className="absolute inset-0 h-full w-full object-cover"
-                            style={{ objectPosition: '50% 30%' }}
+                            style={{ objectPosition: '50% 40%' }}
+                            loading="lazy"
                           />
                         )}
 

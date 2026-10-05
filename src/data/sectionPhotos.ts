@@ -12,9 +12,9 @@ const brand = (file: string, de: string, en: string): SectionPhotoAsset => ({ sr
 
 export const SECTION_PHOTOS = {
   pillars: [
-    stock(7821671, 'Kapitalplanung mit Taschenrechner und Finanzunterlagen', 'Capital planning with a calculator and financial documents'),
-    stock(3862135, 'Fachleute prüfen einen Bauplan', 'Engineers reviewing a construction plan', '50% 25%'),
-    stock(6285089, 'Handschlag bei einer geschäftlichen Besprechung', 'Handshake during a business meeting'),
+    stock(6801682, 'Kapitalplanung mit Taschenrechner und Finanzunterlagen', 'Capital planning with a calculator and financial documents', '50% 50%'),
+    stock(7641870, 'Berater bespricht Grundriss mit Kunden am Tisch', 'Adviser reviewing a floor plan with clients', '50% 30%'),
+    stock(7821671, 'Berater erklärt Unterlagen einem Kunden', 'Adviser explaining documents to a client', '50% 25%'),
   ],
   audiences: [
     stock(6248959, 'Unternehmer im gemeinsamen Strategiegespräch', 'Business professionals in a strategy meeting', '50% 30%'),
@@ -23,16 +23,16 @@ export const SECTION_PHOTOS = {
     stock(7644148, 'Handschlag bei einer vertraulichen Partnerschaftsvereinbarung', 'Handshake at a confidential partnership agreement'),
   ],
   journey: [
-    stock(7658322, 'Erstkontakt und Orientierungsgespräch', 'Initial contact and orientation meeting', '50% 30%'),
-    stock(8292887, 'Strukturierter Strategie-Check mit Finanzprofil', 'Structured strategy check with financial profile', '50% 20%'),
-    stock(7414274, 'Aufnahme in das exklusive Investorennetzwerk', 'Joining the exclusive investor network', '50% 30%'),
-    stock(7821671, 'Persönliches Beratungsgespräch und Vermögensplanung', 'Personal consultation and wealth planning', '50% 25%'),
-    stock(3862135, 'Objektbesichtigung und Due-Diligence vor Ort', 'Property viewing and on-site due diligence', '50% 25%'),
-    stock(7109240, 'Notarielle Unterzeichnung und langfristige Partnerschaft', 'Notarial signing and long-term partnership', '50% 30%'),
+    { src: '/images/founder-natural/journey-contact.png', de: 'Erstkontakt und Orientierungsgespräch', en: 'Initial contact and orientation meeting', position: '50% 30%' },
+    { src: '/images/founder-natural/journey-strategy.png', de: 'Strukturierter Strategie-Check mit Finanzprofil', en: 'Structured strategy check with financial profile', position: '50% 25%' },
+    { src: '/images/founder-natural/journey-network.png', de: 'Aufnahme in das exklusive Investorennetzwerk', en: 'Joining the exclusive investor network', position: '50% 30%' },
+    { src: '/images/founder-natural/journey-consultation.png', de: 'Persönliches Beratungsgespräch und Vermögensplanung', en: 'Personal consultation and wealth planning', position: '50% 25%' },
+    { src: '/images/founder-natural/journey-matching.png', de: 'Objektbesichtigung und Due-Diligence vor Ort', en: 'Property viewing and on-site due diligence', position: '50% 25%' },
+    { src: '/images/founder-natural/journey-partnership.png', de: 'Notarielle Unterzeichnung und langfristige Partnerschaft', en: 'Notarial signing and long-term partnership', position: '50% 30%' },
   ],
   articles: [
-    stock(4342126, 'Planung einer Vermögensstrategie anhand von Finanzberichten', 'Planning a wealth strategy using financial reports'),
-    stock(6801682, 'Sorgfältige Prüfung der Bausubstanz vor dem Kauf', 'Careful inspection of a building before purchase'),
+    stock(7109240, 'Prüfung von Zahlen und Unterlagen zur Vermögensstrategie', 'Reviewing figures and documents for wealth strategy'),
+    stock(7937963, 'Prüfung der Bausubstanz und Qualitätskontrolle', 'Inspecting building condition and quality'),
     { src: FOUNDER_PHOTOS.marketArticle, de: 'Ioannis Vozicis bei der Standortanalyse', en: 'Ioannis Vozicis researching property locations' },
     stock(7642113, 'Prüfung eines Immobiliengrundrisses', 'Reviewing a property floor plan'),
     stock(8297030, 'Berechnung und Prüfung von Finanzunterlagen', 'Calculating and reviewing financial documents'),
