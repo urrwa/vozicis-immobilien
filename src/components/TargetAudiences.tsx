@@ -495,10 +495,17 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
                           <FamilyWealthInfographic t={t} />
                         )}
 
-                        {/* Card 04 Strategische Partner — handshake photo */}
+                        {/* Card 04 Strategische Partner — handshake video */}
                         {cat.id === 'partner' && (
-                          <img src="/images/sections/6285089.jpg" alt="Partnership handshake"
-                            className="absolute inset-0 h-full w-full object-cover object-[50% 30%]" />
+                          <video
+                            src="https://assets.mixkit.co/videos/24047/24047-720.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="absolute inset-0 h-full w-full object-cover"
+                            style={{ objectPosition: '50% 30%' }}
+                          />
                         )}
 
                         <div className="absolute inset-0 bg-gradient-to-t from-[#050B16] via-transparent to-black/25 pointer-events-none" />
