@@ -12,7 +12,267 @@ import {
 } from 'lucide-react';
 import { BRAND_IMAGES } from '../data/brandAssets';
 
-// Animated infographic for Unternehmer card (GmbH / vGmbH tax lever)
+// ─── Card 02: Rental Income Flow Animation ───────────────────────────────────
+function RentalIncomeAnimation({ t }: { t: (s: string) => string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [phase, setPhase] = useState(0); // 0=hidden,1=draw,2=light,3=flow,4=badge
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setPhase(1); }, { threshold: 0.25 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (phase < 1) return;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    timers.push(setTimeout(() => setPhase(2), 900));
+    timers.push(setTimeout(() => setPhase(3), 1600));
+    timers.push(setTimeout(() => setPhase(4), 2500));
+    return () => timers.forEach(clearTimeout);
+  }, [phase === 1]);
+
+  // Marker positions: dots flow from building right-side to ledger
+  const markers = [
+    { x: 58, delay: '0s' },
+    { x: 62, delay: '0.18s' },
+    { x: 66, delay: '0.36s' },
+  ];
+
+  return (
+    <div ref={ref} className="absolute inset-0 bg-[#050B16] flex flex-col items-center justify-center px-5 py-6 gap-0 overflow-hidden">
+      <style>{`
+        @keyframes ri-drawPath { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+        @keyframes ri-fadeIn { from { opacity:0; transform:scale(0.85); } to { opacity:1; transform:scale(1); } }
+        @keyframes ri-windowGlow { 0%,100% { fill: rgba(214,174,112,0.08); } 50% { fill: rgba(214,174,112,0.22); } }
+        @keyframes ri-markerFlow {
+          0%   { transform: translateX(0) translateY(0); opacity:0; }
+          10%  { opacity: 1; }
+          80%  { opacity: 1; }
+          100% { transform: translateX(160px) translateY(-6px); opacity:0; }
+        }
+        @keyframes ri-badgePop { from { opacity:0; transform:scale(0.7); } to { opacity:1; transform:scale(1); } }
+        @keyframes ri-ledgerLine { from { width:0; opacity:0; } to { width:100%; opacity:1; } }
+        .ri-draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+      `}</style>
+
+      {/* Title */}
+      <div className="text-[10px] font-mono uppercase tracking-widest text-[#D6AE70] mb-4 self-start"
+        style={{ opacity: phase >= 1 ? 1 : 0, transition: 'opacity 0.5s' }}>
+        {t('Architektur-Finanzdiagramm')}
+      </div>
+
+      {/* SVG Scene */}
+      <svg viewBox="0 0 320 180" className="w-full max-w-[320px]" style={{ maxHeight: 180 }}>
+        {/* Building outline */}
+        <g style={{ opacity: phase >= 1 ? 1 : 0, transition: 'opacity 0.6s 0.1s' }}>
+          {/* Main body */}
+          <rect x="20" y="60" width="90" height="110" rx="3" fill="none" stroke="#D6AE70" strokeWidth="1.5"
+            style={phase >= 1 ? { animation: 'ri-drawPath 0.7s 0.15s ease-out both', strokeDasharray: 1, strokeDashoffset: 1 } : {}} />
+          {/* Roof */}
+          <polyline points="15,62 65,30 115,62" fill="none" stroke="#D6AE70" strokeWidth="1.5"
+            style={phase >= 1 ? { animation: 'ri-drawPath 0.5s 0.5s ease-out both', strokeDasharray: 1, strokeDashoffset: 1 } : {}} />
+          {/* Door */}
+          <rect x="52" y="128" width="26" height="42" rx="2" fill="#0A1324" stroke="#D6AE70" strokeWidth="1" />
+          {/* Windows row 1 */}
+          {[28, 55, 82].map((x, i) => (
+            <rect key={i} x={x} y="74" width="18" height="14" rx="1.5"
+              fill={phase >= 2 ? 'rgba(214,174,112,0.18)' : 'rgba(214,174,112,0.04)'}
+              stroke="#D6AE70" strokeWidth="0.8"
+              style={{ transition: `fill 0.4s ${0.1 * i}s`, animation: phase >= 2 ? `ri-windowGlow 2s ${0.3 * i}s ease-in-out infinite` : 'none' }} />
+          ))}
+          {/* Windows row 2 */}
+          {[28, 55, 82].map((x, i) => (
+            <rect key={i} x={x} y="100" width="18" height="14" rx="1.5"
+              fill={phase >= 2 ? 'rgba(214,174,112,0.12)' : 'rgba(214,174,112,0.04)'}
+              stroke="#D6AE70" strokeWidth="0.8"
+              style={{ transition: `fill 0.4s ${0.15 * i + 0.2}s` }} />
+          ))}
+        </g>
+
+        {/* Flow arrow line */}
+        <g style={{ opacity: phase >= 3 ? 1 : 0, transition: 'opacity 0.4s' }}>
+          <line x1="115" y1="105" x2="210" y2="105" stroke="#D6AE70" strokeWidth="1" strokeDasharray="4 3" />
+          <polyline points="206,100 212,105 206,110" fill="none" stroke="#D6AE70" strokeWidth="1.5" />
+        </g>
+
+        {/* Flowing gold markers */}
+        {phase >= 3 && markers.map((m, i) => (
+          <circle key={i} cx={m.x} cy="105" r="3.5" fill="#D6AE70" opacity="0"
+            style={{ animation: `ri-markerFlow 1.8s ${m.delay} ease-in-out infinite` }} />
+        ))}
+
+        {/* Ledger / Income box */}
+        <g style={{ opacity: phase >= 3 ? 1 : 0, transition: 'opacity 0.5s 0.3s' }}>
+          <rect x="213" y="78" width="88" height="56" rx="4" fill="#0A1324" stroke="#D6AE70" strokeWidth="1.2" />
+          <text x="257" y="97" textAnchor="middle" fill="#D6AE70" fontSize="8" fontFamily="monospace" fontWeight="bold">{t('Mietertrag')}</text>
+          <line x1="222" y1="104" x2="292" y2="104" stroke="#D6AE70" strokeWidth="0.6" opacity="0.4" />
+          {/* Income lines */}
+          {[0, 1, 2].map(i => (
+            <g key={i} style={{ opacity: phase >= 4 ? 1 : 0, transition: `opacity 0.3s ${0.15 * i + 0.2}s` }}>
+              <rect x="222" y={109 + i * 7} width={30 + i * 10} height="4" rx="1.5" fill="#D6AE70" opacity={0.25 + i * 0.08} />
+            </g>
+          ))}
+        </g>
+
+        {/* Management badge */}
+        {phase >= 4 && (
+          <g style={{ animation: 'ri-badgePop 0.45s 0.1s cubic-bezier(0.34,1.56,0.64,1) both' }}>
+            <circle cx="257" cy="140" r="14" fill="#D6AE70" opacity="0.12" stroke="#D6AE70" strokeWidth="1" />
+            {/* Checkmark */}
+            <polyline points="250,140 255,146 265,133" fill="none" stroke="#D6AE70" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </g>
+        )}
+      </svg>
+
+      {/* 3 Labels */}
+      <div className="flex items-center justify-between w-full max-w-[320px] mt-3 px-1"
+        style={{ opacity: phase >= 4 ? 1 : 0, transition: 'opacity 0.5s 0.3s' }}>
+        {[
+          { en: 'Vetted property',         de: 'Geprüftes Objekt' },
+          { en: 'Rental income',            de: 'Mietrendite' },
+          { en: 'Professional management', de: 'Profi-Verwaltung' },
+        ].map((lbl, i) => (
+          <div key={i} className="flex flex-col items-center gap-1 text-center flex-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D6AE70]" />
+            <span className="text-[9px] text-[#8B9CB3] leading-tight">{t(lbl.de)}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── Card 03: Generational Legacy Illustration ────────────────────────────────
+function LegacyTimelineAnimation({ t }: { t: (s: string) => string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [phase, setPhase] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setPhase(1); }, { threshold: 0.25 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (phase < 1) return;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    timers.push(setTimeout(() => setPhase(2), 700));
+    timers.push(setTimeout(() => setPhase(3), 1400));
+    timers.push(setTimeout(() => setPhase(4), 2200));
+    timers.push(setTimeout(() => setPhase(5), 3100));
+    return () => timers.forEach(clearTimeout);
+  }, [phase === 1]);
+
+  const nodes = [
+    { label: t('Heute'), labelEn: 'Today',            x: 60  },
+    { label: t('Langfristig'), labelEn: 'Long-term',  x: 160 },
+    { label: t('Generation'), labelEn: 'Next gen.',   x: 260 },
+  ];
+
+  return (
+    <div ref={ref} className="absolute inset-0 bg-[#050B16] flex flex-col items-center justify-center px-5 py-5 overflow-hidden">
+      <style>{`
+        @keyframes lt-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+        @keyframes lt-fadeIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes lt-nodePop { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
+        @keyframes lt-houseGlow {
+          0%,100% { filter: drop-shadow(0 0 4px rgba(214,174,112,0.0)); }
+          50%      { filter: drop-shadow(0 0 12px rgba(214,174,112,0.35)); }
+        }
+        .lt-houseglow { animation: lt-houseGlow 3s 2s ease-in-out infinite; }
+      `}</style>
+
+      {/* Eyebrow */}
+      <div className="text-[10px] font-mono uppercase tracking-widest text-[#D6AE70] mb-3 self-start"
+        style={{ opacity: phase >= 1 ? 1 : 0, transition: 'opacity 0.5s' }}>
+        {t('Generationenübergreifender Sachwerterhalt')}
+      </div>
+
+      {/* SVG */}
+      <svg viewBox="0 0 320 200" className="w-full max-w-[320px]" style={{ maxHeight: 200 }}>
+        {/* House — always centred, glows after phase 2 */}
+        <g className={phase >= 2 ? 'lt-houseglow' : ''} style={{ opacity: phase >= 1 ? 1 : 0, transition: 'opacity 0.6s 0.1s' }}>
+          {/* Body */}
+          <rect x="110" y="70" width="100" height="70" rx="3" fill="#0A1324" stroke="#D6AE70" strokeWidth="1.5"
+            style={phase >= 1 ? { animation: 'lt-draw 0.7s 0.2s ease-out both', strokeDasharray: 1, strokeDashoffset: 1 } : {}} />
+          {/* Roof */}
+          <polyline points="105,72 160,38 215,72" fill="none" stroke="#D6AE70" strokeWidth="1.8"
+            style={phase >= 1 ? { animation: 'lt-draw 0.5s 0.6s ease-out both', strokeDasharray: 1, strokeDashoffset: 1 } : {}} />
+          {/* Door */}
+          <rect x="147" y="108" width="26" height="32" rx="2" fill="#162744" stroke="#D6AE70" strokeWidth="0.8" />
+          {/* Windows */}
+          {[[118, 76], [169, 76], [118, 96], [169, 96]].map(([x, y], i) => (
+            <rect key={i} x={x} y={y} width="22" height="16" rx="1.5"
+              fill={phase >= 2 ? 'rgba(214,174,112,0.15)' : 'rgba(214,174,112,0.04)'}
+              stroke="#D6AE70" strokeWidth="0.7"
+              style={{ transition: `fill 0.4s ${0.1 * i + 0.1}s` }} />
+          ))}
+        </g>
+
+        {/* Gold line: house → ownership doc */}
+        <g style={{ opacity: phase >= 2 ? 1 : 0, transition: 'opacity 0.5s' }}>
+          <line x1="160" y1="140" x2="160" y2="165"
+            stroke="#D6AE70" strokeWidth="1.2"
+            style={phase >= 2 ? { animation: 'lt-draw 0.4s 0.2s ease-out both', strokeDasharray: 1, strokeDashoffset: 1 } : {}} />
+          {/* Ownership doc symbol */}
+          <rect x="142" y="165" width="36" height="24" rx="3" fill="#0A1324" stroke="#D6AE70" strokeWidth="1"
+            style={{ opacity: phase >= 2 ? 1 : 0, transition: 'opacity 0.4s 0.5s' }} />
+          <line x1="148" y1="172" x2="172" y2="172" stroke="#D6AE70" strokeWidth="0.8" opacity="0.6" />
+          <line x1="148" y1="178" x2="165" y2="178" stroke="#D6AE70" strokeWidth="0.8" opacity="0.4" />
+          <text x="160" y="194" textAnchor="middle" fill="#D6AE70" fontSize="7" fontFamily="monospace" opacity="0.7">{t('Eigentum')}</text>
+        </g>
+
+        {/* Timeline line */}
+        <g style={{ opacity: phase >= 3 ? 1 : 0, transition: 'opacity 0.5s' }}>
+          <line x1="40" y1="26" x2="280" y2="26"
+            stroke="#D6AE70" strokeWidth="0.8" opacity="0.35"
+            style={phase >= 3 ? { animation: 'lt-draw 0.6s 0.1s ease-out both', strokeDasharray: 1, strokeDashoffset: 1 } : {}} />
+        </g>
+
+        {/* Generation nodes */}
+        {nodes.map((n, i) => (
+          <g key={i} style={{ opacity: phase >= 4 + (i > 0 ? i - 1 : 0) ? 1 : 0, transition: 'opacity 0.4s' }}>
+            {/* Node circle */}
+            <circle cx={n.x} cy="26" r={i === 0 ? 5 : 4}
+              fill={i === 0 ? '#D6AE70' : '#0A1324'}
+              stroke="#D6AE70" strokeWidth={i === 0 ? 0 : 1.2}
+              style={{ animation: phase >= 4 + (i > 0 ? i - 1 : 0) ? `lt-nodePop 0.4s ${0.1 * i}s cubic-bezier(0.34,1.56,0.64,1) both` : 'none' }} />
+            {/* Label */}
+            <text x={n.x} y="14" textAnchor="middle" fill="#F5ECD7" fontSize="8" fontFamily="monospace" opacity="0.85"
+              style={{ fontWeight: i === 2 ? 'bold' : 'normal' }}>
+              {n.label}
+            </text>
+          </g>
+        ))}
+
+        {/* Connector lines: node → house */}
+        {phase >= 5 && [
+          { x1: 60, y1: 31, x2: 130, y2: 68 },
+          { x1: 260, y1: 31, x2: 195, y2: 68 },
+        ].map((line, i) => (
+          <line key={i} x1={line.x1} y1={line.y1} x2={line.x2} y2={line.y2}
+            stroke="#D6AE70" strokeWidth="0.7" strokeDasharray="3 3" opacity="0.35"
+            style={{ animation: 'lt-draw 0.5s ease-out both', strokeDasharray: 1, strokeDashoffset: 1 }} />
+        ))}
+      </svg>
+
+      {/* Bottom labels */}
+      <div className="flex items-center justify-between w-full max-w-[320px] mt-2 px-1"
+        style={{ opacity: phase >= 5 ? 1 : 0, transition: 'opacity 0.5s' }}>
+        <div className="text-[9px] text-[#8B9CB3] text-center flex-1">{t('Erwerb & Struktur')}</div>
+        <div className="text-[9px] text-[#D6AE70] text-center flex-1 font-semibold">§ 23 EStG · 0%</div>
+        <div className="text-[9px] text-[#8B9CB3] text-center flex-1">{t('Nachfolge')}</div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Animated infographic for Unternehmer card (GmbH / vGmbH tax lever) ──────
 function GmbHInfographic({ t }: { t: (s: string) => string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
@@ -492,15 +752,14 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
                           />
                         )}
 
-                        {/* Card 02 Kapitalanleger — property inspection photo */}
+                        {/* Card 02 Kapitalanleger — rental income flow animation */}
                         {cat.id === 'kapitalanleger' && (
-                          <img src="/images/sections/7641870.jpg" alt="Property inspection"
-                            className="absolute inset-0 h-full w-full object-cover object-[50%_25%]" />
+                          <RentalIncomeAnimation t={t} />
                         )}
 
-                        {/* Card 03 Private Investoren — infographic */}
+                        {/* Card 03 Private Investoren — generational legacy illustration */}
                         {cat.id === 'private_investoren' && (
-                          <FamilyWealthInfographic t={t} />
+                          <LegacyTimelineAnimation t={t} />
                         )}
 
                         {/* Card 04 Strategische Partner — handshake video */}
