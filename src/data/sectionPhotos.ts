@@ -28,7 +28,7 @@ export const SECTION_PHOTOS = {
     { src: '/images/founder-natural/journey-network.png', de: 'Aufnahme in das exklusive Investorennetzwerk', en: 'Joining the exclusive investor network', position: '50% 30%' },
     { src: '/images/founder-natural/journey-consultation.png', de: 'Persönliches Beratungsgespräch und Vermögensplanung', en: 'Personal consultation and wealth planning', position: '50% 25%' },
     { src: '/images/founder-natural/journey-matching.png', de: 'Objektbesichtigung und Due-Diligence vor Ort', en: 'Property viewing and on-site due diligence', position: '50% 25%' },
-    { src: '/images/founder-natural/journey-partnership.png', de: 'Notarielle Unterzeichnung und langfristige Partnerschaft', en: 'Notarial signing and long-term partnership', position: '50% 30%' },
+    { src: '/images/founder-natural/journey-partnership.png', de: 'Ioannis Vozicis begrüßt einen langjährigen Investmentpartner', en: 'Ioannis Vozicis welcoming a long-term investment partner', position: '50% 30%' },
   ],
   articles: [
     stock(7109240, 'Prüfung von Zahlen und Unterlagen zur Vermögensstrategie', 'Reviewing figures and documents for wealth strategy'),

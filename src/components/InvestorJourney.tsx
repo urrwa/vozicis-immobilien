@@ -27,7 +27,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Diskrete Kontaktaufnahme über Empfehlungen oder eine gezielte Anfrage. Wir klären in wenigen Momenten, ob ein gegenseitiger strategischer Werteabgleich zwischen Investor und VOZICIS IMMOBILIEN besteht.',
       deliverable: 'Unverbindliche gegenseitige Orientierung & Erst-Einordnung',
       badge: 'Diskret & vertraulich',
-      activeImg: '/images/sections/7658322.jpg',
+      activeImg: '/images/founder-natural/journey-contact.png',
       activePos: '50% 30%',
     },
     {
@@ -37,8 +37,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Über unseren strukturierten Fragebogen erfassen Sie Zielrendite, Zeithorizont, Eigenkapitalspanne und steuerliche Präferenzen (z. B. degressive AfA, Denkmal § 7i, vGmbH-Thesaurierung).',
       deliverable: 'Automatische Profilauswertung & Eignungsmatrix',
       badge: 'Kostenfrei & sofort',
-      activeImg: '/images/sections/8292887.jpg',
-      activePos: '50% 20%',
+      activeImg: '/images/founder-natural/journey-strategy.png',
+      activePos: '50% 25%',
     },
     {
       step: '03',
@@ -47,8 +47,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Nach positiver Passung werden Sie in das persönliche Partnernetzwerk von Ioannis Vozicis aufgenommen. Sie erhalten Vorab-Zugriff auf Off-Market Opportunitäten vor jeder öffentlichen Streuung.',
       deliverable: 'Priorisierter Zugang zum Off-Market Dealflow',
       badge: 'Exklusiver Kreis',
-      activeImg: '/images/sections/7644148.jpg',
-      activePos: '50% 25%',
+      activeImg: '/images/founder-natural/journey-network.png',
+      activePos: '50% 30%',
     },
     {
       step: '04',
@@ -57,8 +57,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Im persönlichen Gespräch besprechen wir Ihre Vermögensarchitektur, Liquiditätsplanung und Finanzierungsstruktur im Detail. Wir kalkulieren Zinsszenarien und steuerliche Netto-Effekte durch.',
       deliverable: 'Individuelle Immobilien- & Steuerstrategie',
       badge: 'Persönliche Begleitung',
-      activeImg: '/images/brand/magnific_use-the-uploaded-referenc_hur9SGHvqL.png',
-      activePos: '50% 20%',
+      activeImg: '/images/founder-natural/journey-consultation.png',
+      activePos: '50% 25%',
     },
     {
       step: '05',
@@ -67,8 +67,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Erst jetzt präsentieren wir konkrete Objekte, die exakt zu Ihrem Profil passen: Ob KfW-40 Neubau mit Sonder-AfA, denkmalgeschützte Sanierung mit Spitzensteuersatzhebel oder rentables Wohnportfolio.',
       deliverable: 'Vollständige Due-Diligence Dokumentation',
       badge: 'Strenge Vorselektion',
-      activeImg: '/images/brand/27.png',
-      activePos: '50% 40%',
+      activeImg: '/images/founder-natural/journey-matching.png',
+      activePos: '50% 35%',
     },
     {
       step: '06',
@@ -77,8 +77,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Begleitung bei Bankfinanzierung, Notartermin und Objektübergabe. Wir bleiben auch nach dem Kauf Ihr strategischer Ansprechpartner für Wertsteigerungen, Refinanzierungen und Folgechancen.',
       deliverable: 'Langfristige Begleitung & Re-Investment Betreuung',
       badge: 'Dauerhafte Partnerschaft',
-      activeImg: '/images/sections/6285089.jpg',
-      activePos: '50% 25%',
+      activeImg: '/images/founder-natural/journey-partnership.png',
+      activePos: '50% 30%',
     }
   ];
 
