@@ -27,8 +27,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Diskrete Kontaktaufnahme über Empfehlungen oder eine gezielte Anfrage. Wir klären in wenigen Momenten, ob ein gegenseitiger strategischer Werteabgleich zwischen Investor und VOZICIS IMMOBILIEN besteht.',
       deliverable: 'Unverbindliche gegenseitige Orientierung & Erst-Einordnung',
       badge: 'Diskret & vertraulich',
-      infographic: '/images/review/contact.svg',
-      objectPosition: '50% 15%'
+      activeImg: '/images/sections/7658322.jpg',
+      activePos: '50% 30%',
     },
     {
       step: '02',
@@ -37,8 +37,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Über unseren strukturierten Fragebogen erfassen Sie Zielrendite, Zeithorizont, Eigenkapitalspanne und steuerliche Präferenzen (z. B. degressive AfA, Denkmal § 7i, vGmbH-Thesaurierung).',
       deliverable: 'Automatische Profilauswertung & Eignungsmatrix',
       badge: 'Kostenfrei & sofort',
-      infographic: '/images/review/strategy.svg',
-      objectPosition: '50% 12%'
+      activeImg: '/images/sections/7414274.jpg',
+      activePos: '50% 20%',
     },
     {
       step: '03',
@@ -47,8 +47,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Nach positiver Passung werden Sie in das persönliche Partnernetzwerk von Ioannis Vozicis aufgenommen. Sie erhalten Vorab-Zugriff auf Off-Market Opportunitäten vor jeder öffentlichen Streuung.',
       deliverable: 'Priorisierter Zugang zum Off-Market Dealflow',
       badge: 'Exklusiver Kreis',
-      infographic: '/images/review/network.svg',
-      objectPosition: '50% 14%'
+      activeImg: '/images/sections/6801682.jpg',
+      activePos: '50% 25%',
     },
     {
       step: '04',
@@ -57,8 +57,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Im persönlichen Gespräch besprechen wir Ihre Vermögensarchitektur, Liquiditätsplanung und Finanzierungsstruktur im Detail. Wir kalkulieren Zinsszenarien und steuerliche Netto-Effekte durch.',
       deliverable: 'Individuelle Immobilien- & Steuerstrategie',
       badge: 'Persönliche Begleitung',
-      infographic: '/images/review/analysis.svg',
-      objectPosition: '50% 15%'
+      activeImg: '/images/brand/magnific_use-the-uploaded-referenc_hur9SGHvqL.png',
+      activePos: '50% 20%',
     },
     {
       step: '05',
@@ -67,8 +67,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Erst jetzt präsentieren wir konkrete Objekte, die exakt zu Ihrem Profil passen: Ob KfW-40 Neubau mit Sonder-AfA, denkmalgeschützte Sanierung mit Spitzensteuersatzhebel oder rentables Wohnportfolio.',
       deliverable: 'Vollständige Due-Diligence Dokumentation',
       badge: 'Strenge Vorselektion',
-      infographic: '/images/review/matching.svg',
-      objectPosition: '50% 12%'
+      activeImg: '/images/brand/27.png',
+      activePos: '50% 40%',
     },
     {
       step: '06',
@@ -77,8 +77,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Begleitung bei Bankfinanzierung, Notartermin und Objektübergabe. Wir bleiben auch nach dem Kauf Ihr strategischer Ansprechpartner für Wertsteigerungen, Refinanzierungen und Folgechancen.',
       deliverable: 'Langfristige Begleitung & Re-Investment Betreuung',
       badge: 'Dauerhafte Partnerschaft',
-      infographic: '/images/review/partnership.svg',
-      objectPosition: '50% 15%'
+      activeImg: '/images/brand/17.png',
+      activePos: '50% 30%',
     }
   ];
 
@@ -116,8 +116,9 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
                 onMouseEnter={() => setSelectedStep(idx)}
                 className={`relative min-w-0 overflow-hidden rounded-[24px] border text-left transition-all duration-500 focus-visible:outline-2 focus-visible:outline-[#D6AE70] ${active ? 'flex-[3] border-[#D6AE70]' : 'flex-1 border-[#162744] hover:border-[#D6AE70]/60'}`}>
                 {active ? (
-                  <img src={stage.infographic} alt={t(stage.title)} loading="eager" decoding="async"
-                    className="absolute inset-0 h-full w-full object-cover object-center" />
+                  <img src={stage.activeImg} alt={t(stage.title)} loading="eager" decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover"
+                    style={{ objectPosition: stage.activePos }} />
                 ) : (
                   <SectionPhoto group="journey" index={idx} />
                 )}
@@ -152,11 +153,15 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
           const items = detailItems[selectedStep] || [];
           return (
             <div key={selectedStep} className="journey-detail flex flex-col lg:flex-row gap-0 bg-[#0A1628] border border-[#162744] rounded-2xl overflow-hidden">
-              {/* Infographic panel */}
-              <div className="lg:w-72 shrink-0 relative bg-[#071220]">
-                <img src={s.infographic} alt={t(s.title)} loading="eager" decoding="async"
-                  className="w-full h-52 lg:h-full object-cover object-top" />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#071220]/60 to-transparent pointer-events-none" />
+              {/* Photo panel */}
+              <div className="lg:w-72 shrink-0 relative bg-[#071220] overflow-hidden">
+                <img src={s.activeImg} alt={t(s.title)} loading="eager" decoding="async"
+                  className="w-full h-52 lg:h-full object-cover"
+                  style={{ objectPosition: s.activePos }} />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#071220]/70 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-3 left-3 right-3">
+                  <span className="text-[9px] font-mono text-[#D6AE70] uppercase tracking-widest opacity-80">STUFE {s.step}</span>
+                </div>
               </div>
               {/* Text content */}
               <div className="flex flex-col sm:flex-row gap-6 p-6 flex-1 min-w-0">
