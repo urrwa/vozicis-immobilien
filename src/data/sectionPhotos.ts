@@ -17,10 +17,10 @@ export const SECTION_PHOTOS = {
     stock(4342126, 'Handschlag bei einer geschäftlichen Besprechung', 'Handshake during a business meeting'),
   ],
   audiences: [
-    stock(7414274, 'Unternehmer im gemeinsamen Strategiegespräch', 'Business professionals discussing strategy'),
-    stock(6248959, 'Finanzberichte und Diagramme am Laptop', 'Financial reports and charts on a laptop'),
-    stock(8292887, 'Ein Paar bespricht seine Finanzplanung', 'A couple discussing their financial planning'),
-    stock(7644148, 'Geschäftspartner begrüßen sich im Büro', 'Business partners greeting each other in an office'),
+    stock(7414274, 'Unternehmer im gemeinsamen Strategiegespräch', 'Business professionals in a strategy meeting', '50% 30%'),
+    stock(7937963, 'Fachkundige Prüfung einer Liegenschaft vor dem Erwerb', 'Expert inspection of a property before acquisition', '50% 25%'),
+    stock(8292887, 'Familie bespricht langfristige Vermögensplanung', 'A family discussing long-term wealth planning'),
+    stock(4342126, 'Handschlag bei einer vertraulichen Partnerschaftsvereinbarung', 'Handshake at a confidential partnership agreement'),
   ],
   journey: [
     { src: FOUNDER_PHOTOS.journey[0], de: 'Persönlicher Austausch mit Ioannis Vozicis', en: 'An introductory conversation with Ioannis Vozicis', position: '46% 35%' },
