@@ -126,6 +126,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
               const active = idx === selectedStep;
               return <button key={stage.step} type="button" aria-label={t(stage.title)} aria-current={active ? 'step' : undefined}
                 onClick={() => setSelectedStep(idx)}
+                onMouseEnter={() => setSelectedStep(idx)}
                 className={`relative min-w-0 overflow-hidden rounded-[24px] border text-left transition-all duration-500 focus-visible:outline-2 focus-visible:outline-[#D6AE70] ${active ? 'flex-[3] border-[#D6AE70]' : 'flex-1 border-[#162744] hover:border-[#D6AE70]/60'}`}>
                 <SectionPhoto group="journey" index={idx} />
                 <div className={`absolute inset-0 bg-gradient-to-t from-[#050B16] via-[#050B16]/20 to-[#050B16]/20 transition-opacity ${active ? 'opacity-85' : 'opacity-95 bg-[#050B16]/50'}`} />
