@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import {
   Sparkles
 } from 'lucide-react';
-import { BRAND_IMAGES } from '../data/brandAssets';
 
 interface InvestorJourneyProps {
   onOpenStrategyCheck: () => void;
@@ -28,9 +27,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Diskrete Kontaktaufnahme über Empfehlungen oder eine gezielte Anfrage. Wir klären in wenigen Momenten, ob ein gegenseitiger strategischer Werteabgleich zwischen Investor und VOZICIS IMMOBILIEN besteht.',
       deliverable: 'Unverbindliche gegenseitige Orientierung & Erst-Einordnung',
       badge: 'Diskret & vertraulich',
-      image: '/images/review/contact.svg',
-      fallback: '/images/review/contact.svg',
-      caption: 'Von Ihrer Anfrage zum persönlichen Austausch',
+      infographic: '/images/review/contact.svg',
       objectPosition: '50% 15%'
     },
     {
@@ -40,9 +37,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Über unseren strukturierten Fragebogen erfassen Sie Zielrendite, Zeithorizont, Eigenkapitalspanne und steuerliche Präferenzen (z. B. degressive AfA, Denkmal § 7i, vGmbH-Thesaurierung).',
       deliverable: 'Automatische Profilauswertung & Eignungsmatrix',
       badge: 'Kostenfrei & sofort',
-      image: '/images/review/strategy.svg',
-      fallback: '/images/review/strategy.svg',
-      caption: 'Datenbasierte Analyse & steuerliche Hebel',
+      infographic: '/images/review/strategy.svg',
       objectPosition: '50% 12%'
     },
     {
@@ -52,9 +47,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Nach positiver Passung werden Sie in das persönliche Partnernetzwerk von Ioannis Vozicis aufgenommen. Sie erhalten Vorab-Zugriff auf Off-Market Opportunitäten vor jeder öffentlichen Streuung.',
       deliverable: 'Priorisierter Zugang zum Off-Market Dealflow',
       badge: 'Exklusiver Kreis',
-      image: '/images/review/network.svg',
-      fallback: '/images/review/network.svg',
-      caption: 'Aufnahme in das Investorennetzwerk',
+      infographic: '/images/review/network.svg',
       objectPosition: '50% 14%'
     },
     {
@@ -64,9 +57,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Im persönlichen Gespräch besprechen wir Ihre Vermögensarchitektur, Liquiditätsplanung und Finanzierungsstruktur im Detail. Wir kalkulieren Zinsszenarien und steuerliche Netto-Effekte durch.',
       deliverable: 'Individuelle Immobilien- & Steuerstrategie',
       badge: 'Persönliche Begleitung',
-      image: BRAND_IMAGES.executiveConsultingLounge.localSrc,
-      fallback: BRAND_IMAGES.executiveConsultingLounge.cdnSrc,
-      caption: 'Vertrauliche 1:1 Beratung in der Consulting Lounge',
+      infographic: '/images/review/analysis.svg',
       objectPosition: '50% 15%'
     },
     {
@@ -76,9 +67,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Erst jetzt präsentieren wir konkrete Objekte, die exakt zu Ihrem Profil passen: Ob KfW-40 Neubau mit Sonder-AfA, denkmalgeschützte Sanierung mit Spitzensteuersatzhebel oder rentables Wohnportfolio.',
       deliverable: 'Vollständige Due-Diligence Dokumentation',
       badge: 'Strenge Vorselektion',
-      image: '/images/review/matching.svg',
-      fallback: '/images/review/matching.svg',
-      caption: 'Ihr Profil und geprüfte Objekte zusammenführen',
+      infographic: '/images/review/matching.svg',
       objectPosition: '50% 12%'
     },
     {
@@ -88,9 +77,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Begleitung bei Bankfinanzierung, Notartermin und Objektübergabe. Wir bleiben auch nach dem Kauf Ihr strategischer Ansprechpartner für Wertsteigerungen, Refinanzierungen und Folgechancen.',
       deliverable: 'Langfristige Begleitung & Re-Investment Betreuung',
       badge: 'Dauerhafte Partnerschaft',
-      image: '/images/review/partnership.svg',
-      fallback: '/images/review/partnership.svg',
-      caption: 'Von der Abstimmung zur langfristigen Begleitung',
+      infographic: '/images/review/partnership.svg',
       objectPosition: '50% 15%'
     }
   ];
@@ -128,8 +115,13 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
                 onClick={() => setSelectedStep(idx)}
                 onMouseEnter={() => setSelectedStep(idx)}
                 className={`relative min-w-0 overflow-hidden rounded-[24px] border text-left transition-all duration-500 focus-visible:outline-2 focus-visible:outline-[#D6AE70] ${active ? 'flex-[3] border-[#D6AE70]' : 'flex-1 border-[#162744] hover:border-[#D6AE70]/60'}`}>
-                <SectionPhoto group="journey" index={idx} />
-                <div className={`absolute inset-0 bg-gradient-to-t from-[#050B16] via-[#050B16]/20 to-[#050B16]/20 transition-opacity ${active ? 'opacity-85' : 'opacity-95 bg-[#050B16]/50'}`} />
+                {active ? (
+                  <img src={stage.infographic} alt={t(stage.title)} loading="eager" decoding="async"
+                    className="absolute inset-0 h-full w-full object-cover object-center" />
+                ) : (
+                  <SectionPhoto group="journey" index={idx} />
+                )}
+                <div className={`absolute inset-0 transition-opacity ${active ? 'bg-gradient-to-t from-[#050B16] via-[#050B16]/40 to-transparent opacity-80' : 'bg-[#050B16]/75'}`} />
                 {active ? <>
                   <span className="absolute top-6 left-5 rounded-full bg-[#050B16]/85 px-3 py-1 text-[10px] text-[#D6AE70] font-mono">{t('STUFE ')}{stage.step} · {t(stage.badge)}</span>
                   <div className="absolute bottom-6 left-5 right-5 flex items-start gap-3">
@@ -159,25 +151,34 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
           };
           const items = detailItems[selectedStep] || [];
           return (
-            <div key={selectedStep} className="journey-detail flex flex-col sm:flex-row gap-6 bg-[#0A1628] border border-[#162744] rounded-2xl p-6">
-              <div className="flex-1">
-                <div className="text-[10px] font-mono text-[#D6AE70] uppercase tracking-widest mb-2">STUFE {s.step} · {t(s.badge)}</div>
-                <div className="text-lg font-bold text-white mb-1">{t(s.title)}</div>
-                <div className="text-xs text-[#D6AE70] mb-3">{t(s.subtitle)}</div>
-                <p className="text-sm text-[#8B9CB3] leading-relaxed">{t(s.description)}</p>
+            <div key={selectedStep} className="journey-detail flex flex-col lg:flex-row gap-0 bg-[#0A1628] border border-[#162744] rounded-2xl overflow-hidden">
+              {/* Infographic panel */}
+              <div className="lg:w-72 shrink-0 relative bg-[#071220]">
+                <img src={s.infographic} alt={t(s.title)} loading="eager" decoding="async"
+                  className="w-full h-52 lg:h-full object-cover object-top" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#071220]/60 to-transparent pointer-events-none" />
               </div>
-              <div className="sm:w-56 shrink-0">
-                <div className="text-[10px] font-mono text-[#D6AE70] uppercase tracking-widest mb-3">{t('Leistungen dieser Stufe')}</div>
-                <ul className="space-y-2">
-                  {items.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-white/75">
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#D6AE70] shrink-0" />
-                      {t(item)}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4 px-3 py-2 rounded-lg bg-[#162744] text-[11px] text-[#8B9CB3]">
-                  <span className="text-[#D6AE70] font-medium">{t('Ergebnis: ')}</span>{t(s.deliverable)}
+              {/* Text content */}
+              <div className="flex flex-col sm:flex-row gap-6 p-6 flex-1 min-w-0">
+                <div className="flex-1 min-w-0">
+                  <div className="text-[10px] font-mono text-[#D6AE70] uppercase tracking-widest mb-2">STUFE {s.step} · {t(s.badge)}</div>
+                  <div className="text-lg font-bold text-white mb-1">{t(s.title)}</div>
+                  <div className="text-xs text-[#D6AE70] mb-3">{t(s.subtitle)}</div>
+                  <p className="text-sm text-[#8B9CB3] leading-relaxed">{t(s.description)}</p>
+                </div>
+                <div className="sm:w-52 shrink-0">
+                  <div className="text-[10px] font-mono text-[#D6AE70] uppercase tracking-widest mb-3">{t('Leistungen dieser Stufe')}</div>
+                  <ul className="space-y-2">
+                    {items.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-white/75">
+                        <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#D6AE70] shrink-0" />
+                        {t(item)}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 px-3 py-2 rounded-lg bg-[#162744] text-[11px] text-[#8B9CB3]">
+                    <span className="text-[#D6AE70] font-medium">{t('Ergebnis: ')}</span>{t(s.deliverable)}
+                  </div>
                 </div>
               </div>
             </div>
