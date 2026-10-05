@@ -1,4 +1,4 @@
-import { FOUNDER_PHOTOS } from './founderPhotos';
+import { FOUNDER_PHOTOS } from './founderPhotos'; // used in articles, consultation
 
 export interface SectionPhotoAsset {
   src: string;
@@ -23,12 +23,12 @@ export const SECTION_PHOTOS = {
     stock(7644148, 'Handschlag bei einer vertraulichen Partnerschaftsvereinbarung', 'Handshake at a confidential partnership agreement'),
   ],
   journey: [
-    { src: FOUNDER_PHOTOS.journey[0], de: 'Persönlicher Austausch mit Ioannis Vozicis', en: 'An introductory conversation with Ioannis Vozicis', position: '46% 35%' },
-    { src: FOUNDER_PHOTOS.journey[1], de: 'Ioannis Vozicis prüft ein Finanzprofil', en: 'Ioannis Vozicis reviewing a financial profile', position: '52% 35%' },
-    { src: FOUNDER_PHOTOS.journey[2], de: 'Ioannis Vozicis im Austausch mit Geschäftspartnern', en: 'Ioannis Vozicis discussing plans with business partners', position: '50% 35%' },
-    { src: FOUNDER_PHOTOS.journey[3], de: 'Persönliches Beratungsgespräch mit Ioannis Vozicis', en: 'Personal consultation with Ioannis Vozicis', position: '53% 35%' },
-    { src: FOUNDER_PHOTOS.journey[4], de: 'Ioannis Vozicis erläutert einen Grundriss bei einer Besichtigung', en: 'Ioannis Vozicis explaining a floor plan during a viewing', position: '48% 35%' },
-    { src: FOUNDER_PHOTOS.journey[5], de: 'Ioannis Vozicis begrüßt einen Geschäftspartner', en: 'Ioannis Vozicis greeting a business partner', position: '48% 35%' },
+    stock(6248959, 'Erstkontakt und Orientierungsgespräch', 'Initial contact and orientation meeting', '50% 30%'),
+    stock(7641870, 'Strukturierter Strategie-Check mit Finanzprofil', 'Structured strategy check with financial profile', '50% 25%'),
+    stock(4342126, 'Aufnahme in das exklusive Investorennetzwerk', 'Joining the exclusive investor network', '50% 30%'),
+    stock(7937963, 'Persönliches Beratungsgespräch und Vermögensplanung', 'Personal consultation and wealth planning', '50% 25%'),
+    stock(19366883, 'Objektbesichtigung und Due-Diligence vor Ort', 'Property viewing and on-site due diligence', '50% 50%'),
+    stock(31154958, 'Notarielle Unterzeichnung und langfristige Partnerschaft', 'Notarial signing and long-term partnership', '50% 40%'),
   ],
   articles: [
     stock(4342126, 'Planung einer Vermögensstrategie anhand von Finanzberichten', 'Planning a wealth strategy using financial reports'),
