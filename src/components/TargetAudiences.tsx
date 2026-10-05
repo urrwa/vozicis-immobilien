@@ -479,9 +479,17 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
                       {/* Right Column: per-card media */}
                       <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] lg:min-h-full rounded-2xl overflow-hidden bg-[#0A1324] border border-[#162744]/70">
 
-                        {/* Card 01 Unternehmer — GmbH tax infographic */}
+                        {/* Card 01 Unternehmer — investment team video */}
                         {cat.id === 'unternehmer' && (
-                          <GmbHInfographic t={t} />
+                          <video
+                            src="https://assets.mixkit.co/videos/5748/5748-720.mp4"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            className="absolute inset-0 h-full w-full object-cover"
+                            style={{ objectPosition: '50% 30%' }}
+                          />
                         )}
 
                         {/* Card 02 Kapitalanleger — property inspection photo */}
