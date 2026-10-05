@@ -1,16 +1,102 @@
 import { SectionPhoto } from './SectionPhoto';
 import { useLanguage } from '../i18n/LanguageContext';
-import React from 'react';
-import { 
-  ArrowRight, 
-  Sparkles, 
-  CheckCircle2, 
-  Building2, 
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  ArrowRight,
+  Sparkles,
+  CheckCircle2,
+  Building2,
   ShieldCheck,
   TrendingUp,
   Scale
 } from 'lucide-react';
 import { BRAND_IMAGES } from '../data/brandAssets';
+
+// Slideshow: cycles through 3 photos
+function PhotoSlideshow({ photos, captions }: { photos: string[]; captions: string[] }) {
+  const [idx, setIdx] = useState(0);
+  const [fade, setFade] = useState(true);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setIdx(i => (i + 1) % photos.length);
+        setFade(true);
+      }, 400);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, [photos.length]);
+  return (
+    <>
+      <img
+        src={photos[idx]}
+        alt={captions[idx]}
+        className="absolute inset-0 h-full w-full object-cover transition-opacity duration-400"
+        style={{ opacity: fade ? 1 : 0 }}
+      />
+      <div className="absolute bottom-14 left-3.5 z-10 flex gap-1.5">
+        {photos.map((_, i) => (
+          <span key={i} className={`block h-1 rounded-full transition-all duration-300 ${i === idx ? 'w-5 bg-[#D6AE70]' : 'w-1.5 bg-white/30'}`} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+// Muted looping video
+function LoopVideo({ src, poster }: { src: string; poster?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    if (ref.current) ref.current.play().catch(() => {});
+  }, []);
+  return (
+    <video ref={ref} src={src} poster={poster} muted playsInline loop preload="metadata"
+      className="absolute inset-0 h-full w-full object-cover" />
+  );
+}
+
+// Inline SVG infographic for Private Investoren (§23 EStG family wealth)
+function FamilyWealthInfographic({ t }: { t: (s: string) => string }) {
+  return (
+    <div className="absolute inset-0 flex flex-col justify-center px-6 py-6 gap-4">
+      {/* Title */}
+      <div className="text-[10px] font-mono uppercase tracking-widest text-[#D6AE70]">{t('Steuerfreier Vermögensaufbau')}</div>
+
+      {/* Timeline bar */}
+      <div className="relative h-2 rounded-full bg-[#162744] overflow-hidden">
+        <div className="absolute inset-y-0 left-0 w-full rounded-full bg-gradient-to-r from-[#D6AE70]/40 via-[#D6AE70] to-[#D6AE70]"
+          style={{ animation: 'growBar 2s ease-out forwards', width: '0%' }} />
+        <style>{`@keyframes growBar { to { width: 100%; } }`}</style>
+      </div>
+      <div className="flex justify-between text-[9px] text-[#8B9CB3] font-mono">
+        <span>{t('Kauf')}</span><span>5 {t('Jahre')}</span><span className="text-[#D6AE70] font-bold">10 {t('Jahre')} ✓</span>
+      </div>
+
+      {/* 3 stat boxes */}
+      <div className="grid grid-cols-3 gap-2 mt-1">
+        {[
+          { val: '0%', label: t('Steuer nach\n10 Jahren') },
+          { val: '§ 23', label: t('EStG\nGrundlage') },
+          { val: '45%', label: t('Spitzensteuersatz\ngespart') },
+        ].map(item => (
+          <div key={item.val} className="rounded-xl bg-[#0A1324] border border-[#162744] p-3 text-center">
+            <div className="text-xl font-extrabold text-[#D6AE70]">{item.val}</div>
+            <div className="text-[9px] text-[#8B9CB3] leading-tight mt-1 whitespace-pre-line">{item.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Bottom row */}
+      <div className="rounded-xl bg-[#0A1324] border border-[#D6AE70]/30 p-3 flex items-center gap-3 mt-1">
+        <ShieldCheck className="w-5 h-5 text-[#D6AE70] shrink-0" />
+        <div>
+          <div className="text-xs font-semibold text-white">{t('Realgrundbuch-Sicherheit')}</div>
+          <div className="text-[10px] text-[#8B9CB3]">{t('Inflationsschutz & Nachfolgeplanung')}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 interface TargetAudiencesProps {
   onSelectAudienceForCheck: (audienceId: string) => void;
@@ -210,11 +296,33 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
 
                       </div>
 
-                      {/* Right Column: Approx 45% Cinematic Stage Photography */}
-                      <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] lg:min-h-full rounded-2xl overflow-hidden bg-[#050B16] border border-[#162744]/70">
-                        <SectionPhoto group="audiences" index={Number(cat.stepNum) - 1} />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#050B16] via-transparent to-black/25 pointer-events-none" />
+                      {/* Right Column: per-card media */}
+                      <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] lg:min-h-full rounded-2xl overflow-hidden bg-[#0A1324] border border-[#162744]/70">
 
+                        {/* Card 01 Unternehmer — 3-photo slideshow */}
+                        {cat.id === 'unternehmer' && (
+                          <PhotoSlideshow
+                            photos={['/images/sections/7414274.jpg', '/images/sections/7109240.jpg', '/images/sections/4342126.jpg']}
+                            captions={['Strategy meeting', 'Financial planning', 'Deal closing']}
+                          />
+                        )}
+
+                        {/* Card 02 Kapitalanleger — looping video */}
+                        {cat.id === 'kapitalanleger' && (
+                          <LoopVideo src="/videos/journey/01.mp4" poster="/images/founder-natural/journey-contact.png" />
+                        )}
+
+                        {/* Card 03 Private Investoren — infographic */}
+                        {cat.id === 'private_investoren' && (
+                          <FamilyWealthInfographic t={t} />
+                        )}
+
+                        {/* Card 04 Strategische Partner — looping video */}
+                        {cat.id === 'partner' && (
+                          <LoopVideo src="/videos/journey/05.mp4" poster="/images/founder-natural/journey-matching.png" />
+                        )}
+
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#050B16] via-transparent to-black/25 pointer-events-none" />
                         <div className="absolute bottom-3.5 left-3.5 right-3.5 z-10 px-3.5 py-2 rounded-xl bg-[#050B16]/85 backdrop-blur-md border border-[#162744] text-xs text-[#8B9CB3] font-light truncate">
                           {t(cat.eyebrow)}
                         </div>
