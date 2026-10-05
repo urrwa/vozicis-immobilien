@@ -93,7 +93,7 @@ export const StrategyCheckSection: React.FC<StrategyCheckSectionProps> = ({
             {/* Right Architectural Real-Estate Image */}
             <div className="lg:col-span-5 relative aspect-[4/3] lg:aspect-auto lg:h-full overflow-hidden bg-[#050B16] min-h-[380px]">
               <SectionPhoto group="consultation" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#0A1324] lg:to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324]/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#0A1324]/40 lg:to-transparent pointer-events-none" />
 
               <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-[#050B16]/85 backdrop-blur-md border border-[#162744] text-xs">
                 <div className="text-[10px] font-mono text-[#D6AE70] uppercase tracking-wider mb-0.5">{t("Off-Market Prüfbericht")}</div>

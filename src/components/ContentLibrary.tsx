@@ -301,7 +301,7 @@ export const ContentLibrary: React.FC<ContentLibraryProps> = ({
                         className="relative min-h-[300px] w-full overflow-hidden bg-[#050B16] cursor-pointer group"
                       >
                         <SectionPhoto group="articles" index={Number(pillar.pillarNumStr) - 1} />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-transparent to-black/30 pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324]/40 via-transparent to-transparent pointer-events-none" />
 
                         {/* Badges on mobile image */}
                         <div className="absolute top-3.5 left-3.5 flex items-center gap-2 z-10">
@@ -651,9 +651,9 @@ const PillarImageCard: React.FC<PillarImageCardProps> = ({
     >
       <SectionPhoto group="articles" index={Number(pillar.pillarNumStr) - 1} />
       <div 
-        className={`absolute inset-0 transition-opacity duration-500 pointer-events-none bg-gradient-to-t from-[#050B16] via-transparent to-black/20 ${
-          isActive ? 'opacity-70' : 'opacity-85 group-hover:opacity-75'
-        }`} 
+        className={`absolute inset-0 transition-opacity duration-500 pointer-events-none bg-gradient-to-t from-[#050B16]/50 via-transparent to-transparent ${
+          isActive ? 'opacity-50' : 'opacity-60 group-hover:opacity-40'
+        }`}
       />
 
       {/* Top Floating Badge */}

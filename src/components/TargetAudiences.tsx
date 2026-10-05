@@ -516,7 +516,7 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
                           />
                         )}
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#050B16] via-transparent to-black/25 pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#050B16]/30 via-transparent to-transparent pointer-events-none" />
                         <div className="absolute bottom-3.5 left-3.5 right-3.5 z-10 px-3.5 py-2 rounded-xl bg-[#050B16]/85 backdrop-blur-md border border-[#162744] text-xs text-[#8B9CB3] font-light truncate">
                           {t(cat.eyebrow)}
                         </div>
