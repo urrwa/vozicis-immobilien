@@ -1,16 +1,9 @@
 import { SectionPhoto } from './SectionPhoto';
-import { JourneyVideo } from './JourneyVideo';
-import { FOUNDER_PHOTOS } from '../data/founderPhotos';
 import { useLanguage } from '../i18n/LanguageContext';
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { 
-  ArrowRight, 
-  ChevronLeft, ChevronRight,
-  Sparkles, 
-  CheckCircle2 
+import {
+  Sparkles
 } from 'lucide-react';
-import { BRAND_IMAGES } from '../data/brandAssets';
 
 interface InvestorJourneyProps {
   onOpenStrategyCheck: () => void;
@@ -101,8 +94,6 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
     }
   ];
 
-  const current = stages[activeStep];
-
   return (
     <section id="methodik" className="py-24 lg:py-36 bg-[#050B16] border-t border-b border-[#162744] relative bg-tech-grid">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -153,87 +144,6 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
           </div>
         </nav>
 
-        {/* Detailed Active Stage Premium Card */}
-        <div aria-live="polite" aria-atomic="true" className="rounded-2xl bg-[#0A1324] border border-[#162744] overflow-hidden shadow-2xl shadow-black/80">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeStep}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="flex flex-col lg:flex-row items-stretch min-h-[480px]"
-            >
-              {/* Left Column: approx 48% content */}
-              <div className="w-full lg:w-[48%] p-6 sm:p-8 lg:p-12 flex flex-col justify-between space-y-6">
-                
-                <div className="space-y-4">
-                  <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-[#050B16] border border-[#162744] text-[#D6AE70] text-xs font-mono tracking-widest uppercase">
-                    <span>{t("STUFE ")}{t(current.step)}</span>
-                    <span className="text-[#162744]">|</span>
-                    <span className="text-[#8B9CB3] font-sans tracking-normal">{t(current.badge)}</span>
-                  </div>
-
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight font-sans tracking-tight">
-                    {t(current.title)}
-                  </h3>
-
-                  <div className="text-sm sm:text-base font-semibold text-[#D6AE70]">
-                    {t(current.subtitle)}
-                  </div>
-
-                  <p className="text-sm sm:text-base text-[#8B9CB3] font-light leading-relaxed">
-                    {t(current.description)}
-                  </p>
-                </div>
-
-                {/* Refined Inset Deliverable Panel */}
-                <div className="p-4 sm:p-5 rounded-xl bg-[#050B16] border border-[#162744] space-y-1.5">
-                  <div className="text-[11px] uppercase font-mono tracking-wider text-[#8B9CB3]">{t("Konkretes Ergebnis dieser Stufe:")}</div>
-                  <div className="text-xs sm:text-sm font-semibold text-white flex items-center gap-2.5">
-                    <CheckCircle2 className="w-4 h-4 text-[#D6AE70] shrink-0" />
-                    <span>{t(current.deliverable)}</span>
-                  </div>
-                </div>
-
-                {/* CTA Action Bar */}
-                <div className="pt-2">
-                  {activeStep === 1 ? (
-                    <button
-                      onClick={onOpenStrategyCheck}
-                      className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#D6AE70] hover:bg-[#E2C492] text-[#050B16] font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2.5 cursor-pointer shadow-lg shadow-[#D6AE70]/15"
-                    >
-                      <span>{t("Strategie-Check jetzt starten")}</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-[#050B16]" />
-                    </button>
-                  ) : (
-                    <button
-                      onClick={onOpenConsultation}
-                      className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-transparent hover:bg-[#D6AE70] text-[#D6AE70] hover:text-[#050B16] border border-[#D6AE70] font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2.5 cursor-pointer shadow-sm hover:shadow-lg hover:shadow-[#D6AE70]/15"
-                    >
-                      <span>{t("Stufe mit Ioannis besprechen")}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </button>
-                  )}
-                </div>
-
-              </div>
-
-              {/* Right Column: approx 52% photographic showcase */}
-              <div className="w-full lg:w-[52%] relative flex flex-col justify-center min-h-[360px] overflow-hidden bg-[#050B16]">
-                {[0, 4].includes(activeStep)
-                  ? <JourneyVideo src={`/videos/journey/0${activeStep + 1}.mp4`} poster={FOUNDER_PHOTOS.journey[activeStep]} />
-                  : <SectionPhoto group="journey" index={activeStep} />}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#0A1324]/50 lg:via-transparent lg:to-transparent pointer-events-none" />
-
-                <div className="absolute bottom-4 left-4 right-4 z-10 px-4 py-2.5 rounded-xl bg-[#050B16]/85 backdrop-blur-md border border-[#162744] text-xs text-[#8B9CB3] font-light">
-                  {t(current.caption)}
-                </div>
-              </div>
-
-            </motion.div>
-          </AnimatePresence>
-        </div>
 
       </div>
     </section>
