@@ -43,17 +43,6 @@ function PhotoSlideshow({ photos, captions }: { photos: string[]; captions: stri
   );
 }
 
-// Muted looping video
-function LoopVideo({ src, poster }: { src: string; poster?: string }) {
-  const ref = useRef<HTMLVideoElement>(null);
-  useEffect(() => {
-    if (ref.current) ref.current.play().catch(() => {});
-  }, []);
-  return (
-    <video ref={ref} src={src} poster={poster} muted playsInline loop preload="metadata"
-      className="absolute inset-0 h-full w-full object-cover" />
-  );
-}
 
 // Inline infographic for Private Investoren (§23 EStG family wealth) with animations
 function FamilyWealthInfographic({ t }: { t: (s: string) => string }) {
@@ -352,9 +341,10 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
                           />
                         )}
 
-                        {/* Card 02 Kapitalanleger — looping video */}
+                        {/* Card 02 Kapitalanleger — property inspection photo */}
                         {cat.id === 'kapitalanleger' && (
-                          <LoopVideo src="/videos/journey/01.mp4" poster="/images/founder-natural/journey-contact.png" />
+                          <img src="/images/sections/7937963.jpg" alt="Property inspection"
+                            className="absolute inset-0 h-full w-full object-cover object-[50%_25%]" />
                         )}
 
                         {/* Card 03 Private Investoren — infographic */}
@@ -362,9 +352,10 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
                           <FamilyWealthInfographic t={t} />
                         )}
 
-                        {/* Card 04 Strategische Partner — looping video */}
+                        {/* Card 04 Strategische Partner — handshake photo */}
                         {cat.id === 'partner' && (
-                          <LoopVideo src="/videos/journey/05.mp4" poster="/images/founder-natural/journey-matching.png" />
+                          <img src="/images/sections/4342126.jpg" alt="Partnership handshake"
+                            className="absolute inset-0 h-full w-full object-cover" />
                         )}
 
                         <div className="absolute inset-0 bg-gradient-to-t from-[#050B16] via-transparent to-black/25 pointer-events-none" />
