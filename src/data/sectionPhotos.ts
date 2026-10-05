@@ -12,9 +12,9 @@ const brand = (file: string, de: string, en: string): SectionPhotoAsset => ({ sr
 
 export const SECTION_PHOTOS = {
   pillars: [
-    { src: 'https://images.pexels.com/photos/38395702/pexels-photo-38395702.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', de: 'Strategischer Kapitaleinsatz – entschlossener Unternehmer', en: 'Strategic capital deployment – decisive executive', position: '50% 30%' },
-    { src: 'https://images.pexels.com/photos/7641895/pexels-photo-7641895.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', de: 'Immobilienfachmann präsentiert exklusive Liegenschaft', en: 'Real estate professional presenting an exclusive property', position: '50% 25%' },
-    { src: 'https://images.pexels.com/photos/5833238/pexels-photo-5833238.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', de: 'Vertrauensvoller Handschlag zwischen Partnern', en: 'Trusted handshake between partners', position: '50% 35%' },
+    stock(7821671, 'Kapitalplanung mit Taschenrechner und Finanzunterlagen', 'Capital planning with a calculator and financial documents'),
+    stock(3862135, 'Fachleute prüfen einen Bauplan', 'Engineers reviewing a construction plan', '50% 25%'),
+    stock(6285089, 'Handschlag bei einer geschäftlichen Besprechung', 'Handshake during a business meeting'),
   ],
   audiences: [
     stock(6248959, 'Unternehmer im gemeinsamen Strategiegespräch', 'Business professionals in a strategy meeting', '50% 30%'),
