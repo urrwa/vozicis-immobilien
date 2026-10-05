@@ -51,12 +51,12 @@ export const Header: React.FC<HeaderProps> = ({
       <header 
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           isScrolled 
-            ? 'bg-[#050B16]/95 backdrop-blur-xl border-b border-[#162744] py-3.5 shadow-2xl shadow-black/50' 
-            : 'bg-[#050B16]/75 backdrop-blur-md border-b border-[#162744]/60 py-4.5'
+            ? 'bg-[#050B16]/95 backdrop-blur-xl border-b border-[#162744] py-3 shadow-lg shadow-black/20' 
+            : 'bg-[#050B16]/75 backdrop-blur-md border-b border-[#162744]/60 py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-end pb-2"><LanguageSwitcher /></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
+        <div className="xl:hidden max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex justify-end pb-1"><LanguageSwitcher /></div>
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-5">
           
           {/* Brand Identity: VOZICIS IMMOBILIEN */}
           <div 
@@ -75,7 +75,7 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-4 text-[13px] font-medium text-[#8B9CB3]">
+          <nav className="hidden xl:flex items-center gap-4 text-[12px] font-medium text-[#8B9CB3]">
             <a 
               href="#positioning" 
               className="text-white hover:text-[#D6AE70] transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#D6AE70]"
@@ -109,7 +109,7 @@ export const Header: React.FC<HeaderProps> = ({
           </nav>
 
           {/* Right-Side CTA: Strategie-Check */}
-          <div className="hidden xl:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-4"><LanguageSwitcher />
             <button
               onClick={onOpenStrategyCheck}
               className="group px-5 py-2.5 rounded-full bg-[#D6AE70] hover:bg-[#E2C492] text-[#050B16] font-semibold text-xs tracking-wider transition-all duration-300 shadow-lg shadow-[#D6AE70]/15 flex items-center gap-2 cursor-pointer"
@@ -128,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-xl text-[#8B9CB3] hover:text-white bg-[#0A1324] border border-[#162744]"
-              aria-label={t("Navigation umschalten")}
+              aria-label={t("Navigation umschalten")} aria-expanded={mobileMenuOpen} aria-controls="mobile-navigation"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
@@ -138,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="xl:hidden bg-[#050B16]/98 backdrop-blur-2xl border-b border-[#162744] px-6 py-6 space-y-4 animate-in fade-in slide-in-from-top-2 duration-200">
+          <div id="mobile-navigation" className="xl:hidden bg-[#050B16]/98 backdrop-blur-2xl border-b border-[#162744] px-6 py-6 space-y-4 animate-in fade-in slide-in-from-top-2 duration-200">
             <nav className="flex flex-col space-y-3 text-sm text-[#8B9CB3]">
               <a 
                 href="#positioning" 
@@ -204,3 +204,4 @@ export const Header: React.FC<HeaderProps> = ({
     </>
   );
 };
+
