@@ -83,3 +83,28 @@
 }
 
 
+
+/* Journey card animated overlays */
+@keyframes journeyFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes journeyBarGrow {
+  from { width: 0; }
+}
+@keyframes journeyPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.4); }
+}
+.journey-anim {
+  animation: journeyFadeUp 0.3s ease both;
+}
+.journey-item {
+  animation: journeyFadeUp 0.35s ease both;
+}
+.journey-bar {
+  animation: journeyBarGrow 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.journey-pulse {
+  animation: journeyPulse 2s ease-in-out infinite;
+}
