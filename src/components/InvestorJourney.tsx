@@ -122,7 +122,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
                 ) : (
                   <SectionPhoto group="journey" index={idx} />
                 )}
-                <div className={`absolute inset-0 transition-opacity ${active ? 'bg-gradient-to-t from-[#050B16] via-[#050B16]/40 to-transparent opacity-80' : 'bg-[#050B16]/75'}`} />
+                <div className={`absolute inset-0 transition-opacity ${active ? 'bg-gradient-to-t from-[#050B16]/70 via-[#050B16]/20 to-transparent opacity-80' : 'bg-[#050B16]/50'}`} />
                 {active ? <>
                   <span className="absolute top-6 left-5 rounded-full bg-[#050B16]/85 px-3 py-1 text-[10px] text-[#D6AE70] font-mono">{t('STUFE ')}{stage.step} · {t(stage.badge)}</span>
                   <div className="absolute bottom-6 left-5 right-5 flex items-start gap-3">

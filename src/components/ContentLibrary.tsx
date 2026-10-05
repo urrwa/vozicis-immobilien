@@ -301,7 +301,6 @@ export const ContentLibrary: React.FC<ContentLibraryProps> = ({
                         className="relative min-h-[300px] w-full overflow-hidden bg-[#050B16] cursor-pointer group"
                       >
                         <SectionPhoto group="articles" index={Number(pillar.pillarNumStr) - 1} />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324]/40 via-transparent to-transparent pointer-events-none" />
 
                         {/* Badges on mobile image */}
                         <div className="absolute top-3.5 left-3.5 flex items-center gap-2 z-10">

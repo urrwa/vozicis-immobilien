@@ -150,7 +150,7 @@ export const FounderProfile: React.FC<FounderProfileProps> = ({
                   alt={t(currentPortrait.caption)}
                   className="w-full h-full object-cover object-top filter brightness-95 contrast-105 transition-all duration-700 group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-transparent to-black/20 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324]/40 via-transparent to-transparent pointer-events-none" />
               </div>
 
               {/* Founder Details Bar */}

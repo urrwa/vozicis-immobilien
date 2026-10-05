@@ -93,7 +93,6 @@ export const OpportunitiesShowcase: React.FC<OpportunitiesShowcaseProps> = ({
               {/* Large Image Showcase */}
               <div className="lg:col-span-7 relative min-h-[380px] lg:min-h-auto overflow-hidden bg-[#050B16]">
                 <SectionPhoto group="opportunities" index={Number(flagshipOpp.id.replace('opp-', '')) - 1} illustrative />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324]/30 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#0A1324]/30" />
                 
                 <div className="absolute top-6 left-6 flex items-center gap-2">
                   <span className="px-3.5 py-1 rounded-full bg-[#D6AE70] text-[#050B16] text-[11px] font-bold tracking-wide">{t("Flagship Opportunity")}</span>
@@ -159,7 +158,6 @@ export const OpportunitiesShowcase: React.FC<OpportunitiesShowcaseProps> = ({
                 {/* Visual Image */}
                 <div className="relative min-h-[300px] overflow-hidden bg-[#050B16]">
                   <SectionPhoto group="opportunities" index={Number(opp.id.replace('opp-', '')) - 1} illustrative />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324]/30 via-transparent to-transparent" />
                   
                   <div className="absolute top-4 left-4">
                     <span className="px-3 py-1 rounded-full bg-[#050B16]/80 backdrop-blur-md border border-[#162744] text-[#D6AE70] text-[10px] font-medium tracking-wide">
