@@ -139,7 +139,6 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
                 <div className={`absolute inset-0 bg-gradient-to-t from-[#050B16] via-[#050B16]/20 to-[#050B16]/20 transition-opacity ${active ? 'opacity-85' : 'opacity-95 bg-[#050B16]/50'}`} />
                 {active ? <>
                   <span className="absolute top-6 left-5 rounded-full bg-[#050B16]/85 px-3 py-1 text-[10px] text-[#D6AE70] font-mono">{t('STUFE ')}{stage.step} · {t(stage.badge)}</span>
-                  <ArrowRight className="absolute top-6 right-5 rounded-full bg-[#050B16]/80 p-2 text-[#D6AE70] -rotate-45" size={36} />
                   <div className="absolute bottom-6 left-5 right-5 flex items-start gap-3">
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#D6AE70] text-[#050B16] text-xs font-bold">{stage.step}</span>
                     <div><div className="text-xl font-bold text-white">{t(stage.title)}</div><div className="mt-1 text-xs text-[#D6AE70]">{t(stage.subtitle)}</div></div>

@@ -237,16 +237,6 @@ export const FounderProfile: React.FC<FounderProfileProps> = ({
 
         </div>
 
-        {/* 21:9 Wide Architectural Panoramic Banner */}
-        <div className="relative rounded-2xl overflow-hidden border border-[#162744] shadow-2xl aspect-[21/9] sm:aspect-[24/9] w-full bg-[#050B16]">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#16304a] via-[#0A1324] to-[#050B16]" aria-hidden="true" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#050B16]/90 via-[#050B16]/50 to-transparent" />
-          
-          <div className="absolute inset-0 p-6 sm:p-10 flex flex-col justify-end max-w-xl">
-            <div className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-[#D6AE70] mb-1">{t("Präsenz in den wirtschaftsstärksten Regionen Deutschlands")}</div>
-            <div className="text-xl sm:text-3xl font-extrabold text-white leading-snug font-sans">{t("Direkter Zugang zu Standorten mit stabiler Kaufkraft und planbarem Mietwachstum.")}</div>
-          </div>
-        </div>
 
       </div>
     </section>
