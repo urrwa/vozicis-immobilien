@@ -146,6 +146,43 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
           </div>
         </nav>
 
+        {/* Active stage detail panel */}
+        {(() => {
+          const s = stages[selectedStep];
+          const detailItems: Record<number, string[]> = {
+            0: ['Diskrete Kontaktaufnahme', 'Strategischer Werteabgleich', 'Gegenseitige Erst-Einordnung'],
+            1: ['Zielrendite & Zeithorizont', 'Eigenkapitalspanne', 'Steuerliche Präferenzen (AfA, §7i)'],
+            2: ['Off-Market Dealflow Zugang', 'Priorisierte Objekt-Einladungen', 'Persönliches Partnernetzwerk'],
+            3: ['Vermögensarchitektur', 'Finanzierungsstruktur', 'Steuerliche Netto-Effekte'],
+            4: ['KfW-40 Neubau mit Sonder-AfA', 'Denkmal §7i Sanierung', 'Renditestarkes Wohnportfolio'],
+            5: ['Bankfinanzierung & Notartermin', 'Objektübergabe & Onboarding', 'Re-Investment Betreuung'],
+          };
+          const items = detailItems[selectedStep] || [];
+          return (
+            <div key={selectedStep} className="flex flex-col sm:flex-row gap-6 bg-[#0A1628] border border-[#162744] rounded-2xl p-6 animate-[fadeIn_0.3s_ease]">
+              <div className="flex-1">
+                <div className="text-[10px] font-mono text-[#D6AE70] uppercase tracking-widest mb-2">STUFE {s.step} · {t(s.badge)}</div>
+                <div className="text-lg font-bold text-white mb-1">{t(s.title)}</div>
+                <div className="text-xs text-[#D6AE70] mb-3">{t(s.subtitle)}</div>
+                <p className="text-sm text-[#8B9CB3] leading-relaxed">{t(s.description)}</p>
+              </div>
+              <div className="sm:w-56 shrink-0">
+                <div className="text-[10px] font-mono text-[#D6AE70] uppercase tracking-widest mb-3">{t('Leistungen dieser Stufe')}</div>
+                <ul className="space-y-2">
+                  {items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-2 text-sm text-white/75">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#D6AE70] shrink-0" />
+                      {t(item)}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-4 px-3 py-2 rounded-lg bg-[#162744] text-[11px] text-[#8B9CB3]">
+                  <span className="text-[#D6AE70] font-medium">{t('Ergebnis: ')}</span>{t(s.deliverable)}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
       </div>
     </section>
