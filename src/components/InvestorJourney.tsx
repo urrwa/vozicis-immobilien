@@ -77,8 +77,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Begleitung bei Bankfinanzierung, Notartermin und Objektübergabe. Wir bleiben auch nach dem Kauf Ihr strategischer Ansprechpartner für Wertsteigerungen, Refinanzierungen und Folgechancen.',
       deliverable: 'Langfristige Begleitung & Re-Investment Betreuung',
       badge: 'Dauerhafte Partnerschaft',
-      activeImg: '/images/brand/17.png',
-      activePos: '50% 30%',
+      activeImg: '/images/sections/6285089.jpg',
+      activePos: '50% 25%',
     }
   ];
 
@@ -153,16 +153,6 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
           const items = detailItems[selectedStep] || [];
           return (
             <div key={selectedStep} className="journey-detail flex flex-col lg:flex-row gap-0 bg-[#0A1628] border border-[#162744] rounded-2xl overflow-hidden">
-              {/* Photo panel */}
-              <div className="lg:w-72 shrink-0 relative bg-[#071220] overflow-hidden">
-                <img src={s.activeImg} alt={t(s.title)} loading="eager" decoding="async"
-                  className="w-full h-52 lg:h-full object-cover"
-                  style={{ objectPosition: s.activePos }} />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#071220]/70 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute bottom-3 left-3 right-3">
-                  <span className="text-[9px] font-mono text-[#D6AE70] uppercase tracking-widest opacity-80">STUFE {s.step}</span>
-                </div>
-              </div>
               {/* Text content */}
               <div className="flex flex-col sm:flex-row gap-6 p-6 flex-1 min-w-0">
                 <div className="flex-1 min-w-0">

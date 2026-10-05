@@ -23,12 +23,12 @@ export const SECTION_PHOTOS = {
     stock(7644148, 'Handschlag bei einer vertraulichen Partnerschaftsvereinbarung', 'Handshake at a confidential partnership agreement'),
   ],
   journey: [
-    stock(6248959, 'Erstkontakt und Orientierungsgespräch', 'Initial contact and orientation meeting', '50% 30%'),
-    stock(7641870, 'Strukturierter Strategie-Check mit Finanzprofil', 'Structured strategy check with financial profile', '50% 25%'),
-    stock(4342126, 'Aufnahme in das exklusive Investorennetzwerk', 'Joining the exclusive investor network', '50% 30%'),
-    stock(7937963, 'Persönliches Beratungsgespräch und Vermögensplanung', 'Personal consultation and wealth planning', '50% 25%'),
-    stock(19366883, 'Objektbesichtigung und Due-Diligence vor Ort', 'Property viewing and on-site due diligence', '50% 50%'),
-    stock(31154958, 'Notarielle Unterzeichnung und langfristige Partnerschaft', 'Notarial signing and long-term partnership', '50% 40%'),
+    stock(7658322, 'Erstkontakt und Orientierungsgespräch', 'Initial contact and orientation meeting', '50% 30%'),
+    stock(8292887, 'Strukturierter Strategie-Check mit Finanzprofil', 'Structured strategy check with financial profile', '50% 20%'),
+    stock(7414274, 'Aufnahme in das exklusive Investorennetzwerk', 'Joining the exclusive investor network', '50% 30%'),
+    stock(7821671, 'Persönliches Beratungsgespräch und Vermögensplanung', 'Personal consultation and wealth planning', '50% 25%'),
+    stock(3862135, 'Objektbesichtigung und Due-Diligence vor Ort', 'Property viewing and on-site due diligence', '50% 25%'),
+    stock(7109240, 'Notarielle Unterzeichnung und langfristige Partnerschaft', 'Notarial signing and long-term partnership', '50% 30%'),
   ],
   articles: [
     stock(4342126, 'Planung einer Vermögensstrategie anhand von Finanzberichten', 'Planning a wealth strategy using financial reports'),
