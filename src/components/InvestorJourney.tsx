@@ -37,7 +37,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Über unseren strukturierten Fragebogen erfassen Sie Zielrendite, Zeithorizont, Eigenkapitalspanne und steuerliche Präferenzen (z. B. degressive AfA, Denkmal § 7i, vGmbH-Thesaurierung).',
       deliverable: 'Automatische Profilauswertung & Eignungsmatrix',
       badge: 'Kostenfrei & sofort',
-      activeImg: '/images/sections/7414274.jpg',
+      activeImg: '/images/sections/8292887.jpg',
       activePos: '50% 20%',
     },
     {
@@ -47,7 +47,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Nach positiver Passung werden Sie in das persönliche Partnernetzwerk von Ioannis Vozicis aufgenommen. Sie erhalten Vorab-Zugriff auf Off-Market Opportunitäten vor jeder öffentlichen Streuung.',
       deliverable: 'Priorisierter Zugang zum Off-Market Dealflow',
       badge: 'Exklusiver Kreis',
-      activeImg: '/images/sections/6801682.jpg',
+      activeImg: '/images/sections/7644148.jpg',
       activePos: '50% 25%',
     },
     {

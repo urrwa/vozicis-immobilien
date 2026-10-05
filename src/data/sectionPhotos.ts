@@ -12,15 +12,15 @@ const brand = (file: string, de: string, en: string): SectionPhotoAsset => ({ sr
 
 export const SECTION_PHOTOS = {
   pillars: [
-    stock(6801682, 'Kapitalplanung mit Taschenrechner und Finanzunterlagen', 'Capital planning with a calculator and financial documents'),
+    stock(7821671, 'Kapitalplanung mit Taschenrechner und Finanzunterlagen', 'Capital planning with a calculator and financial documents'),
     stock(3862135, 'Fachleute prüfen einen Bauplan', 'Engineers reviewing a construction plan', '50% 25%'),
-    stock(4342126, 'Handschlag bei einer geschäftlichen Besprechung', 'Handshake during a business meeting'),
+    stock(6285089, 'Handschlag bei einer geschäftlichen Besprechung', 'Handshake during a business meeting'),
   ],
   audiences: [
-    stock(7414274, 'Unternehmer im gemeinsamen Strategiegespräch', 'Business professionals in a strategy meeting', '50% 30%'),
-    stock(7937963, 'Fachkundige Prüfung einer Liegenschaft vor dem Erwerb', 'Expert inspection of a property before acquisition', '50% 25%'),
+    stock(6248959, 'Unternehmer im gemeinsamen Strategiegespräch', 'Business professionals in a strategy meeting', '50% 30%'),
+    stock(7641870, 'Fachkundige Prüfung einer Liegenschaft vor dem Erwerb', 'Expert inspection of a property before acquisition', '50% 25%'),
     stock(8292887, 'Familie bespricht langfristige Vermögensplanung', 'A family discussing long-term wealth planning'),
-    stock(4342126, 'Handschlag bei einer vertraulichen Partnerschaftsvereinbarung', 'Handshake at a confidential partnership agreement'),
+    stock(7644148, 'Handschlag bei einer vertraulichen Partnerschaftsvereinbarung', 'Handshake at a confidential partnership agreement'),
   ],
   journey: [
     { src: FOUNDER_PHOTOS.journey[0], de: 'Persönlicher Austausch mit Ioannis Vozicis', en: 'An introductory conversation with Ioannis Vozicis', position: '46% 35%' },
@@ -31,8 +31,8 @@ export const SECTION_PHOTOS = {
     { src: FOUNDER_PHOTOS.journey[5], de: 'Ioannis Vozicis begrüßt einen Geschäftspartner', en: 'Ioannis Vozicis greeting a business partner', position: '48% 35%' },
   ],
   articles: [
-    stock(7109240, 'Planung einer Vermögensstrategie anhand von Finanzberichten', 'Planning a wealth strategy using financial reports'),
-    stock(7937963, 'Sorgfältige Prüfung der Bausubstanz vor dem Kauf', 'Careful inspection of a building before purchase'),
+    stock(4342126, 'Planung einer Vermögensstrategie anhand von Finanzberichten', 'Planning a wealth strategy using financial reports'),
+    stock(6801682, 'Sorgfältige Prüfung der Bausubstanz vor dem Kauf', 'Careful inspection of a building before purchase'),
     { src: FOUNDER_PHOTOS.marketArticle, de: 'Ioannis Vozicis bei der Standortanalyse', en: 'Ioannis Vozicis researching property locations' },
     stock(7642113, 'Prüfung eines Immobiliengrundrisses', 'Reviewing a property floor plan'),
     stock(8297030, 'Berechnung und Prüfung von Finanzunterlagen', 'Calculating and reviewing financial documents'),
@@ -46,17 +46,17 @@ export const SECTION_PHOTOS = {
     stock(8556704, 'Symbolbild von Lager- und Logistikhallen', 'Illustrative photo of warehouse and logistics buildings', '50% 75%'),
   ],
   philosophy: [
-    stock(7109240, 'Langfristige Planung mit Finanzberichten', 'Long-term planning with financial reports'),
-    stock(6801682, 'Berechnung von Kapital und Finanzierung', 'Calculating capital and financing'),
-    stock(7937963, 'Prüfung eines Gebäudes durch einen Fachmann', 'A specialist inspecting a building'),
-    stock(19250685, 'Wohnbebauung und ihr unmittelbares Umfeld', 'Residential buildings and their surrounding neighborhood'),
-    stock(8297030, 'Prüfung von Zahlen und Unterlagen', 'Reviewing figures and documents'),
+    stock(7937963, 'Langfristige Planung mit Finanzberichten', 'Long-term planning with financial reports'),
+    stock(8297030, 'Berechnung von Kapital und Finanzierung', 'Calculating capital and financing'),
+    stock(7414274, 'Prüfung eines Gebäudes durch einen Fachmann', 'A specialist inspecting a building', '50% 30%'),
+    stock(36733326, 'Wohnbebauung und ihr unmittelbares Umfeld', 'Residential buildings and their surrounding neighborhood'),
+    stock(7109240, 'Prüfung von Zahlen und Unterlagen', 'Reviewing figures and documents'),
   ],
   consultation: [{ src: FOUNDER_PHOTOS.consultation, de: 'Ioannis Vozicis im persönlichen Videogespräch', en: 'Ioannis Vozicis in a personal video consultation' }],
   roadmap: [
-    stock(7109240, 'Strategieplanung', 'Strategy planning'),
-    stock(7414274, 'Gemeinsame Geschäftsentwicklung', 'Collaborative business development'),
-    stock(7644148, 'Aufbau von Partnerschaften', 'Developing partnerships'),
-    stock(36733326, 'Zusammenarbeit im Netzwerk', 'Network collaboration'),
+    stock(8556704, 'Strategieplanung', 'Strategy planning', '50% 40%'),
+    stock(19250685, 'Gemeinsame Geschäftsentwicklung', 'Collaborative business development'),
+    stock(7642113, 'Aufbau von Partnerschaften', 'Developing partnerships'),
+    stock(6801682, 'Zusammenarbeit im Netzwerk', 'Network collaboration'),
   ],
 };
