@@ -1,7 +1,7 @@
 import { StrategyInfographic } from './StrategyInfographic';
 import { useLanguage } from '../i18n/LanguageContext';
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { 
   Target, 
   Coins, 
@@ -19,6 +19,7 @@ import { BRAND_IMAGES } from '../data/brandAssets';
 export const BrandPhilosophy: React.FC<{ onOpenStrategyCheck: () => void }> = ({ onOpenStrategyCheck }) => {
   const { t, locale, localizedImage } = useLanguage();
   const [selectedParam, setSelectedParam] = useState<number>(0);
+  const reduceMotion = useReducedMotion();
 
   const parameters = [
     {
@@ -111,12 +112,14 @@ export const BrandPhilosophy: React.FC<{ onOpenStrategyCheck: () => void }> = ({
                   <button
                     key={param.id}
                     onClick={() => setSelectedParam(index)}
-                    className={`w-full text-left p-4 rounded-xl cursor-pointer transition-all duration-300 flex items-center justify-between border ${
+                    aria-pressed={isSelected}
+                    className={`relative isolate w-full text-left p-4 rounded-xl cursor-pointer transition-colors duration-300 flex items-center justify-between border ${
                       isSelected
-                        ? 'bg-[#D6AE70] text-[#050B16] border-[#D6AE70] shadow-xl shadow-[#D6AE70]/15'
+                        ? 'text-[#050B16] border-[#D6AE70] shadow-xl shadow-[#D6AE70]/15'
                         : 'bg-[#0A1324]/60 hover:bg-[#0A1324] text-[#8B9CB3] hover:text-white border-[#162744]'
                     }`}
                   >
+                    {isSelected && <motion.span layoutId="strategy-selection-highlight" transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 320, damping: 32 }} className="absolute inset-0 -z-10 rounded-xl bg-[#D6AE70]" />}
                     <div className="flex items-center gap-3.5">
                       <span className={`font-mono text-xs font-semibold ${isSelected ? 'text-[#050B16]' : 'text-[#D6AE70]'}`}>
                         {t(param.num)}
@@ -150,9 +153,9 @@ export const BrandPhilosophy: React.FC<{ onOpenStrategyCheck: () => void }> = ({
             <StrategyInfographic index={selectedParam} />
 
             {/* Content Overlay */}
-            <div className="relative z-10 p-7 sm:p-10 space-y-6">
+            <motion.div key={current.id} initial={reduceMotion ? false : { opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: reduceMotion ? 0 : 0.35 }} className="relative z-10 p-7 sm:p-10 space-y-6">
               <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#050B16]/80 border border-[#162744] text-[#D6AE70] text-xs font-mono backdrop-blur-md">
-                <span>{t("DIMENSION ")}{t(current.num)}</span>
+                <span>{t("DIMENSION ")}{String(selectedParam + 1).padStart(2, '0')}</span>
                 <span className="text-[#162744]">|</span>
                 <span className="text-white font-sans">{t(current.title)}</span>
               </div>
@@ -172,7 +175,7 @@ export const BrandPhilosophy: React.FC<{ onOpenStrategyCheck: () => void }> = ({
                   {t(current.benchmark)}
                 </span>
               </div>
-            </div>
+            </motion.div>
 
             {/* Bottom Bar */}
             <div className="relative z-10 p-6 sm:p-8 pt-4 border-t border-[#162744] flex items-center justify-between bg-[#08101E]/90 backdrop-blur-sm">

@@ -1,6 +1,6 @@
 import { useLanguage } from '../i18n/LanguageContext';
 import React, { useState, useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { 
   ArrowRight, 
   ShieldCheck, 
@@ -24,7 +24,16 @@ export const Hero: React.FC<HeroProps> = ({
   onOpenConsultation,
   onOpenLookbook
 }) => {
-  const { t, locale, localizedImage } = useLanguage();
+  const { t, language, locale, localizedImage } = useLanguage();
+  const reduceMotion = useReducedMotion();
+  const [activeVisual, setActiveVisual] = useState(0);
+  const visualTabs = [
+    { label: 'Analyse', image: BRAND_IMAGES.marketAnalysisPresentation.localSrc, de: 'Marktanalyse mit Ioannis Vozicis', en: 'Market analysis with Ioannis Vozicis' },
+    { label: 'Boardroom', image: '/images/brand/08.png', de: 'Strategischer Austausch im Boardroom', en: 'Strategic discussion in the boardroom' },
+    { label: 'Advisory', image: BRAND_IMAGES.executiveConsultingLounge.localSrc, de: 'Persönliche Beratung mit Ioannis Vozicis', en: 'Personal advice with Ioannis Vozicis' },
+    { label: 'Notariat', image: BRAND_IMAGES.dealClosingPartnership.localSrc, de: 'Partnerschaft & Transaktionsbegleitung', en: 'Partnership & transaction support' },
+  ];
+  const selectedVisual = visualTabs[activeVisual];
 
   // Mouse parallax motion values
   const mouseX = useMotionValue(0);
@@ -40,6 +49,7 @@ export const Hero: React.FC<HeroProps> = ({
   const parallaxFloatY = useTransform(smoothMouseY, [-500, 500], [14, -14]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (reduceMotion) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -48,10 +58,10 @@ export const Hero: React.FC<HeroProps> = ({
   };
 
   const currentVisual = {
-    image: BRAND_IMAGES.founderPortrait.localSrc,
-    fallback: BRAND_IMAGES.founderPortrait.cdnSrc,
-    tag: 'Ihr Ansprechpartner vor Ort',
-    caption: 'Ioannis Vozicis – persönlich an Ihrer Seite',
+    image: selectedVisual.image,
+    fallback: BRAND_IMAGES.founderPortrait.localSrc,
+    tag: language === 'en' ? selectedVisual.en : selectedVisual.de,
+    caption: language === 'en' ? selectedVisual.en : selectedVisual.de,
     highlight: '1:1 Mandantenbetreuung',
     sub: 'Persönlich mit Ioannis Vozicis'
   };
@@ -182,16 +192,22 @@ export const Hero: React.FC<HeroProps> = ({
               
               {/* Image Frame - 1:1 Aspect Ratio Square */}
               <div className="relative aspect-square w-full overflow-hidden bg-[#050B16]">
-                <img
+                <AnimatePresence initial={false}>
+                <motion.img
                   key={currentVisual.image}
+                  initial={reduceMotion ? false : { opacity: 0, scale: 1.04 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: reduceMotion ? 0 : 0.45, ease: 'easeOut' }}
                   src={localizedImage(currentVisual.image)}
                   onError={(e) => {
                     (e.currentTarget as HTMLImageElement).src = currentVisual.fallback;
                   }}
                   alt={t(currentVisual.tag)}
-                  className="w-full h-full object-cover transition-all duration-1000 brightness-90 contrast-[1.05]"
+                  className="absolute inset-0 w-full h-full object-cover brightness-90 contrast-[1.05]"
                   style={{ objectPosition: '50% 15%' }}
                 />
+                </AnimatePresence>
                 
                 {/* Subtle dark navy vignette */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1324] via-transparent to-black/30 pointer-events-none" />
@@ -218,6 +234,13 @@ export const Hero: React.FC<HeroProps> = ({
 
               {/* Bottom Interactive Stage Control */}
               <div className="p-4 sm:p-5 bg-[#08101E] border-t border-[#162744] space-y-3">
+                <div role="group" aria-label={language === 'en' ? 'Photo views' : 'Bildansichten'} className="grid grid-cols-4 gap-1 rounded-2xl border border-[#162744] bg-[#050B16] p-1">
+                  {visualTabs.map((tab, index) => <button key={tab.label} type="button" aria-pressed={activeVisual === index} onClick={() => setActiveVisual(index)}
+                    className={`relative rounded-xl py-3 text-[10px] sm:text-xs focus-visible:outline-2 focus-visible:outline-[#D6AE70] ${activeVisual === index ? 'text-[#050B16]' : 'text-[#8B9CB3] hover:text-white'}`}>
+                    {activeVisual === index && <motion.span layoutId="hero-photo-highlight" transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 360, damping: 32 }} className="absolute inset-0 rounded-xl bg-[#D6AE70] shadow-lg shadow-[#D6AE70]/10" />}
+                    <span className="relative z-10">{t(tab.label)}</span>
+                  </button>)}
+                </div>
                 
                 {/* Caption & Lookbook Link */}
                 <div className="flex items-center justify-between text-xs text-[#8B9CB3] font-light pt-1 px-1">
