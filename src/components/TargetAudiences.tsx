@@ -48,80 +48,117 @@ function PhotoSlideshow({ photos, captions }: { photos: string[]; captions: stri
 function FamilyWealthInfographic({ t }: { t: (s: string) => string }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const [count0, setCount0] = useState(0);
   const [count45, setCount45] = useState(0);
+  const [barWidth, setBarWidth] = useState(0);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.3 });
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.2 });
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
 
-  // Count-up animations once visible
+  // Animate bar and count-up once visible
   useEffect(() => {
     if (!visible) return;
-    // 0% counter (stays 0, just triggers after delay for visual consistency)
-    const t0 = setTimeout(() => setCount0(0), 400);
-    // 45% counter
-    let v = 0;
-    const t45 = setInterval(() => {
-      v += 3;
-      if (v >= 45) { setCount45(45); clearInterval(t45); }
-      else setCount45(v);
-    }, 30);
-    return () => { clearTimeout(t0); clearInterval(t45); };
+    // Progress bar fill
+    const barTimer = setTimeout(() => {
+      let w = 0;
+      const barInterval = setInterval(() => {
+        w += 2;
+        if (w >= 100) { setBarWidth(100); clearInterval(barInterval); }
+        else setBarWidth(w);
+      }, 18);
+      return () => clearInterval(barInterval);
+    }, 200);
+    // 45% count-up
+    const countTimer = setTimeout(() => {
+      let v = 0;
+      const countInterval = setInterval(() => {
+        v += 2;
+        if (v >= 45) { setCount45(45); clearInterval(countInterval); }
+        else setCount45(v);
+      }, 28);
+      return () => clearInterval(countInterval);
+    }, 600);
+    return () => { clearTimeout(barTimer); clearTimeout(countTimer); };
   }, [visible]);
+
+  const show = (delay: string) => visible
+    ? { animation: `fw-fadeUp 0.55s ${delay} cubic-bezier(0.16,1,0.3,1) both` }
+    : { opacity: 0 };
+
+  const popIn = (delay: string) => visible
+    ? { animation: `fw-popIn 0.45s ${delay} cubic-bezier(0.34,1.56,0.64,1) both` }
+    : { opacity: 0 };
 
   return (
     <div ref={ref} className="absolute inset-0 flex flex-col justify-center px-6 py-6 gap-4">
       <style>{`
-        @keyframes growBar { from { width: 0% } to { width: 100% } }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: translateY(0) } }
-        @keyframes popIn { from { opacity: 0; transform: scale(0.85) } to { opacity: 1; transform: scale(1) } }
-        @keyframes shimmer { 0%,100% { opacity:1 } 50% { opacity:0.6 } }
+        @keyframes fw-fadeUp {
+          from { opacity: 0; transform: translateY(14px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fw-popIn {
+          from { opacity: 0; transform: scale(0.80); }
+          to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fw-pulse {
+          0%, 100% { box-shadow: 0 0 0 0 rgba(214,174,112,0); }
+          50%       { box-shadow: 0 0 0 6px rgba(214,174,112,0.18); }
+        }
+        @keyframes fw-checkmark {
+          from { opacity: 0; transform: scale(0) rotate(-30deg); }
+          to   { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        @keyframes fw-shimmer {
+          0%,100% { opacity: 1; }
+          50%      { opacity: 0.55; }
+        }
+        .fw-glow { animation: fw-pulse 2s 1.8s ease-in-out infinite; }
       `}</style>
 
       {/* Title */}
-      <div className="text-[10px] font-mono uppercase tracking-widest text-[#D6AE70]"
-        style={{ animation: visible ? 'fadeUp 0.5s ease-out forwards' : 'none', opacity: visible ? 1 : 0 }}>
+      <div className="text-[10px] font-mono uppercase tracking-widest text-[#D6AE70]" style={show('0s')}>
         {t('Steuerfreier Vermögensaufbau')}
       </div>
 
       {/* Timeline bar */}
-      <div className="relative h-2 rounded-full bg-[#162744] overflow-hidden">
-        <div className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#D6AE70]/40 via-[#D6AE70] to-[#D6AE70]"
-          style={{ animation: visible ? 'growBar 2.2s ease-out forwards' : 'none', width: '0%' }} />
-      </div>
-      <div className="flex justify-between text-[9px] text-[#8B9CB3] font-mono"
-        style={{ animation: visible ? 'fadeUp 0.6s 0.3s ease-out both' : 'none' }}>
-        <span>{t('Kauf')}</span>
-        <span>5 {t('Jahre')}</span>
-        <span className="text-[#D6AE70] font-bold" style={{ animation: visible ? 'shimmer 1.5s 2s ease-in-out 3' : 'none' }}>
-          10 {t('Jahre')} ✓
-        </span>
+      <div style={show('0.15s')}>
+        <div className="relative h-2 rounded-full bg-[#162744] overflow-hidden">
+          <div className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-[#D6AE70]/40 via-[#D6AE70] to-[#D6AE70] transition-none"
+            style={{ width: `${barWidth}%`, transition: 'none' }} />
+        </div>
+        <div className="flex justify-between text-[9px] text-[#8B9CB3] font-mono mt-1.5">
+          <span>{t('Kauf')}</span>
+          <span>5 {t('Jahre')}</span>
+          <span className="text-[#D6AE70] font-bold flex items-center gap-1">
+            10 {t('Jahre')}
+            <span style={visible ? { animation: 'fw-checkmark 0.4s 2s cubic-bezier(0.34,1.56,0.64,1) both', display: 'inline-block' } : { opacity: 0, display: 'inline-block' }}>✓</span>
+          </span>
+        </div>
       </div>
 
       {/* 3 stat boxes */}
-      <div className="grid grid-cols-3 gap-2 mt-1">
+      <div className="grid grid-cols-3 gap-2">
         {[
-          { val: '0%', display: `${count0}%`, label: t('Steuer nach\n10 Jahren'), delay: '0.5s' },
-          { val: '§ 23', display: visible ? '§ 23' : '§ —', label: t('EStG\nGrundlage'), delay: '0.7s' },
-          { val: '45%', display: `${count45}%`, label: t('Spitzensteuersatz\ngespart'), delay: '0.9s' },
+          { key: 'zero', display: '0%',      label: t('Steuer nach\n10 Jahren'),     delay: '0.35s', glow: false },
+          { key: 'par',  display: '§ 23',    label: t('EStG\nGrundlage'),            delay: '0.55s', glow: false },
+          { key: 'pct',  display: `${count45}%`, label: t('Spitzensteuersatz\ngespart'), delay: '0.75s', glow: true },
         ].map(item => (
-          <div key={item.val}
-            className="rounded-xl bg-[#0A1324] border border-[#162744] p-3 text-center"
-            style={{ animation: visible ? `popIn 0.4s ${item.delay} ease-out both` : 'none', opacity: 0 }}>
-            <div className="text-xl font-extrabold text-[#D6AE70] tabular-nums">{item.display}</div>
+          <div key={item.key}
+            className={`rounded-xl bg-[#0A1324] border border-[#162744] p-3 text-center ${item.glow ? 'fw-glow' : ''}`}
+            style={popIn(item.delay)}>
+            <div className="text-xl font-extrabold text-[#D6AE70] tabular-nums leading-tight">{item.display}</div>
             <div className="text-[9px] text-[#8B9CB3] leading-tight mt-1 whitespace-pre-line">{item.label}</div>
           </div>
         ))}
       </div>
 
       {/* Bottom row */}
-      <div className="rounded-xl bg-[#0A1324] border border-[#D6AE70]/30 p-3 flex items-center gap-3 mt-1"
-        style={{ animation: visible ? 'fadeUp 0.5s 1.1s ease-out both' : 'none', opacity: 0 }}>
+      <div className="rounded-xl bg-[#0A1324] border border-[#D6AE70]/30 p-3 flex items-center gap-3"
+        style={show('1.0s')}>
         <ShieldCheck className="w-5 h-5 text-[#D6AE70] shrink-0" />
         <div>
           <div className="text-xs font-semibold text-white">{t('Realgrundbuch-Sicherheit')}</div>
