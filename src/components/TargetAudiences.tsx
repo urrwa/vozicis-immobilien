@@ -12,6 +12,115 @@ import {
 } from 'lucide-react';
 import { BRAND_IMAGES } from '../data/brandAssets';
 
+// Animated infographic for Unternehmer card (GmbH / vGmbH tax lever)
+function GmbHInfographic({ t }: { t: (s: string) => string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [bar1, setBar1] = useState(0); // 45% private tax
+  const [bar2, setBar2] = useState(0); // 15.8% KSt
+  const [saving, setSaving] = useState(0); // counter ~29%
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.2 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    // bar1 → 45%
+    const t1 = setTimeout(() => {
+      let v = 0;
+      const iv = setInterval(() => { v += 1; if (v >= 45) { setBar1(45); clearInterval(iv); } else setBar1(v); }, 22);
+      return () => clearInterval(iv);
+    }, 300);
+    // bar2 → 15.8% (shorter, fills to ~16 out of 45 scale)
+    const t2 = setTimeout(() => {
+      let v = 0;
+      const iv = setInterval(() => { v += 1; if (v >= 16) { setBar2(16); clearInterval(iv); } else setBar2(v); }, 30);
+      return () => clearInterval(iv);
+    }, 700);
+    // saving counter → 29%
+    const t3 = setTimeout(() => {
+      let v = 0;
+      const iv = setInterval(() => { v += 1; if (v >= 29) { setSaving(29); clearInterval(iv); } else setSaving(v); }, 35);
+      return () => clearInterval(iv);
+    }, 1100);
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+  }, [visible]);
+
+  const fadeUp = (delay: string) => visible
+    ? { animation: `gmbh-fadeUp 0.5s ${delay} cubic-bezier(0.16,1,0.3,1) both` }
+    : { opacity: 0 };
+
+  return (
+    <div ref={ref} className="absolute inset-0 p-5 flex flex-col justify-between bg-[#050B16]">
+      <style>{`
+        @keyframes gmbh-fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes gmbh-glow { 0%,100% { box-shadow:0 0 0 0 rgba(214,174,112,0); } 50% { box-shadow:0 0 0 8px rgba(214,174,112,0.12); } }
+        .gmbh-glow { animation: gmbh-glow 2.5s 2s ease-in-out infinite; }
+      `}</style>
+
+      {/* Header */}
+      <div style={fadeUp('0s')} className="flex items-center justify-between">
+        <span className="text-[10px] font-mono text-[#D6AE70] uppercase tracking-widest">Steueroptimierung · vGmbH</span>
+        <Building2 className="w-4 h-4 text-[#D6AE70]/60" />
+      </div>
+
+      {/* Comparison bars */}
+      <div className="space-y-3 my-2">
+        {/* Private rate */}
+        <div style={fadeUp('0.2s')} className="space-y-1.5">
+          <div className="flex justify-between text-[10px]">
+            <span className="text-[#8B9CB3]">{t('Privatbesteuerung')}</span>
+            <span className="text-red-400 font-mono font-bold">{bar1}%</span>
+          </div>
+          <div className="h-2 rounded-full bg-[#162744] overflow-hidden">
+            <div className="h-full rounded-full bg-gradient-to-r from-red-500/70 to-red-400/50 transition-none"
+              style={{ width: `${(bar1 / 45) * 100}%` }} />
+          </div>
+          <div className="text-[9px] text-[#8B9CB3]/60">{t('Einkommensteuer + Soli + KiSt')}</div>
+        </div>
+
+        {/* GmbH rate */}
+        <div style={fadeUp('0.4s')} className="space-y-1.5">
+          <div className="flex justify-between text-[10px]">
+            <span className="text-[#8B9CB3]">{t('vGmbH Körperschaftsteuer')}</span>
+            <span className="text-[#D6AE70] font-mono font-bold">{bar2 < 16 ? bar2 : '15,8'}%</span>
+          </div>
+          <div className="h-2 rounded-full bg-[#162744] overflow-hidden">
+            <div className="h-full rounded-full bg-gradient-to-r from-[#D6AE70]/70 to-[#D6AE70]/40 transition-none"
+              style={{ width: `${(bar2 / 45) * 100}%` }} />
+          </div>
+          <div className="text-[9px] text-[#8B9CB3]/60">{t('Thesaurierung in der Holding')}</div>
+        </div>
+      </div>
+
+      {/* Saving pill */}
+      <div style={fadeUp('0.8s')} className="flex items-center justify-center">
+        <div className={`gmbh-glow flex items-center gap-2 px-4 py-2.5 rounded-full border border-[#D6AE70]/40 bg-[#D6AE70]/08`}>
+          <TrendingUp className="w-3.5 h-3.5 text-[#D6AE70]" />
+          <span className="text-xs text-white font-semibold">
+            <span className="text-[#D6AE70] font-mono text-sm">{saving}%</span> {t(' Steuerersparnis p.a.')}
+          </span>
+        </div>
+      </div>
+
+      {/* Bullet points */}
+      <div style={fadeUp('1.1s')} className="space-y-1.5 mt-1">
+        {[t('Degressive AfA & Sonder-AfA nutzbar'), t('Keine 45% Privatsteuer auf Erträge'), t('Reinvestition aus versteuerten 15,8%')].map((item, i) => (
+          <div key={i} className="flex items-center gap-2 text-[10px] text-[#8B9CB3]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#D6AE70]/70 shrink-0" />
+            {item}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // Slideshow: cycles through 3 photos
 function PhotoSlideshow({ photos, captions }: { photos: string[]; captions: string[] }) {
   const [idx, setIdx] = useState(0);
@@ -370,17 +479,14 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
                       {/* Right Column: per-card media */}
                       <div className="lg:col-span-5 relative min-h-[260px] sm:min-h-[320px] lg:min-h-full rounded-2xl overflow-hidden bg-[#0A1324] border border-[#162744]/70">
 
-                        {/* Card 01 Unternehmer — 3-photo slideshow */}
+                        {/* Card 01 Unternehmer — GmbH tax infographic */}
                         {cat.id === 'unternehmer' && (
-                          <PhotoSlideshow
-                            photos={['/images/sections/7414274.jpg', '/images/sections/7109240.jpg', '/images/sections/4342126.jpg']}
-                            captions={['Strategy meeting', 'Financial planning', 'Deal closing']}
-                          />
+                          <GmbHInfographic t={t} />
                         )}
 
                         {/* Card 02 Kapitalanleger — property inspection photo */}
                         {cat.id === 'kapitalanleger' && (
-                          <img src="/images/sections/7937963.jpg" alt="Property inspection"
+                          <img src="/images/sections/7641870.jpg" alt="Property inspection"
                             className="absolute inset-0 h-full w-full object-cover object-[50%_25%]" />
                         )}
 
@@ -391,8 +497,8 @@ export const TargetAudiences: React.FC<TargetAudiencesProps> = ({
 
                         {/* Card 04 Strategische Partner — handshake photo */}
                         {cat.id === 'partner' && (
-                          <img src="/images/sections/4342126.jpg" alt="Partnership handshake"
-                            className="absolute inset-0 h-full w-full object-cover" />
+                          <img src="/images/sections/6285089.jpg" alt="Partnership handshake"
+                            className="absolute inset-0 h-full w-full object-cover object-[50% 30%]" />
                         )}
 
                         <div className="absolute inset-0 bg-gradient-to-t from-[#050B16] via-transparent to-black/25 pointer-events-none" />
