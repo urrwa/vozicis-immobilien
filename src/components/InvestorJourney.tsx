@@ -159,7 +159,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
           };
           const items = detailItems[selectedStep] || [];
           return (
-            <div key={selectedStep} className="flex flex-col sm:flex-row gap-6 bg-[#0A1628] border border-[#162744] rounded-2xl p-6 animate-[fadeIn_0.3s_ease]">
+            <div key={selectedStep} className="journey-detail flex flex-col sm:flex-row gap-6 bg-[#0A1628] border border-[#162744] rounded-2xl p-6">
               <div className="flex-1">
                 <div className="text-[10px] font-mono text-[#D6AE70] uppercase tracking-widest mb-2">STUFE {s.step} · {t(s.badge)}</div>
                 <div className="text-lg font-bold text-white mb-1">{t(s.title)}</div>
