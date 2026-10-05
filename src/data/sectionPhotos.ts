@@ -1,3 +1,5 @@
+import { FOUNDER_PHOTOS } from './founderPhotos';
+
 export interface SectionPhotoAsset {
   src: string;
   de: string;
@@ -21,21 +23,21 @@ export const SECTION_PHOTOS = {
     stock(7644148, 'Geschäftspartner begrüßen sich im Büro', 'Business partners greeting each other in an office'),
   ],
   journey: [
-    { ...brand('magnific_use-the-uploaded-referenc_s73pV29l8e', 'Persönlicher Austausch mit Ioannis Vozicis', 'An introductory conversation with Ioannis Vozicis'), position: '50% 30%' },
-    { ...brand('magnific_hyperrealistic-image-of-i_s73hzYOl8e', 'Ioannis Vozicis erläutert die Immobilienstrategie', 'Ioannis Vozicis explaining a property strategy'), position: '50% 30%' },
-    { ...brand('08', 'Ioannis Vozicis im Kreis von Geschäftspartnern', 'Ioannis Vozicis with business partners'), position: '50% 25%' },
-    brand('magnific_use-the-uploaded-referenc_hur9SGHvqL', 'Persönliche Beratung in der Lounge', 'Personal consultation in the lounge'),
-    { ...brand('15', 'Ioannis Vozicis stellt passende Immobilien vor', 'Ioannis Vozicis presenting suitable properties'), position: '50% 35%' },
-    brand('17', 'Handschlag zum Abschluss einer Partnerschaft', 'Handshake marking a partnership'),
+    { src: FOUNDER_PHOTOS.journey[0], de: 'Persönlicher Austausch mit Ioannis Vozicis', en: 'An introductory conversation with Ioannis Vozicis', position: '46% 35%' },
+    { src: FOUNDER_PHOTOS.journey[1], de: 'Ioannis Vozicis prüft ein Finanzprofil', en: 'Ioannis Vozicis reviewing a financial profile', position: '52% 35%' },
+    { src: FOUNDER_PHOTOS.journey[2], de: 'Ioannis Vozicis im Austausch mit Geschäftspartnern', en: 'Ioannis Vozicis discussing plans with business partners', position: '50% 35%' },
+    { src: FOUNDER_PHOTOS.journey[3], de: 'Persönliches Beratungsgespräch mit Ioannis Vozicis', en: 'Personal consultation with Ioannis Vozicis', position: '53% 35%' },
+    { src: FOUNDER_PHOTOS.journey[4], de: 'Ioannis Vozicis erläutert einen Grundriss bei einer Besichtigung', en: 'Ioannis Vozicis explaining a floor plan during a viewing', position: '48% 35%' },
+    { src: FOUNDER_PHOTOS.journey[5], de: 'Ioannis Vozicis begrüßt einen Geschäftspartner', en: 'Ioannis Vozicis greeting a business partner', position: '48% 35%' },
   ],
   articles: [
     stock(7109240, 'Planung einer Vermögensstrategie anhand von Finanzberichten', 'Planning a wealth strategy using financial reports'),
     stock(7937963, 'Sorgfältige Prüfung der Bausubstanz vor dem Kauf', 'Careful inspection of a building before purchase'),
-    brand('magnific_hyperrealistic-image-of-i_s73hzYOl8e', 'Ioannis Vozicis bei einer Immobilienmarkt-Präsentation', 'Ioannis Vozicis presenting a real estate market analysis'),
+    { src: FOUNDER_PHOTOS.marketArticle, de: 'Ioannis Vozicis bei der Standortanalyse', en: 'Ioannis Vozicis researching property locations' },
     stock(7642113, 'Prüfung eines Immobiliengrundrisses', 'Reviewing a property floor plan'),
     stock(8297030, 'Berechnung und Prüfung von Finanzunterlagen', 'Calculating and reviewing financial documents'),
     stock(7658322, 'Finanzierungsplanung anhand einer Bilanz', 'Financing planning using a balance sheet'),
-    brand('15', 'Ioannis Vozicis stellt Immobilien vor', 'Ioannis Vozicis presenting properties'),
+    { src: FOUNDER_PHOTOS.personalArticle, de: 'Persönliche Perspektive von Ioannis Vozicis', en: 'A personal perspective from Ioannis Vozicis' },
   ],
   opportunities: [
     stock(19366883, 'Symbolbild eines modernen Wohngebäudes', 'Illustrative photo of a modern residential building', '50% 70%'),
@@ -50,7 +52,7 @@ export const SECTION_PHOTOS = {
     stock(19250685, 'Wohnbebauung und ihr unmittelbares Umfeld', 'Residential buildings and their surrounding neighborhood'),
     stock(8297030, 'Prüfung von Zahlen und Unterlagen', 'Reviewing figures and documents'),
   ],
-  consultation: [stock(7821671, 'Ein Berater erläutert Finanzunterlagen', 'An adviser explaining financial documents')],
+  consultation: [{ src: FOUNDER_PHOTOS.consultation, de: 'Ioannis Vozicis im persönlichen Videogespräch', en: 'Ioannis Vozicis in a personal video consultation' }],
   roadmap: [
     stock(7109240, 'Strategieplanung', 'Strategy planning'),
     stock(7414274, 'Gemeinsame Geschäftsentwicklung', 'Collaborative business development'),

@@ -12,6 +12,7 @@ import {
   Camera
 } from 'lucide-react';
 import { BRAND_IMAGES } from '../data/brandAssets';
+import { FOUNDER_PHOTOS } from '../data/founderPhotos';
 
 interface HeroProps {
   onOpenStrategyCheck: () => void;
@@ -58,7 +59,7 @@ export const Hero: React.FC<HeroProps> = ({
   };
 
   const currentVisual = {
-    image: selectedVisual.image,
+    image: FOUNDER_PHOTOS.hero[activeVisual],
     fallback: BRAND_IMAGES.founderPortrait.localSrc,
     tag: language === 'en' ? selectedVisual.en : selectedVisual.de,
     caption: language === 'en' ? selectedVisual.en : selectedVisual.de,

@@ -1,5 +1,7 @@
 // English copy keyed by the original German text.
 export const english: Record<string, string> = {
+  "KI-generierte Illustration · Ioannis Vozicis": "AI-generated illustration · Ioannis Vozicis",
+  "Persönliche Perspektive": "Personal perspective",
   "Ziele": "Goals",
   "Steuern & Vermögensstruktur": "Tax & wealth structure",
   "Vorherige Stufe": "Previous step",

@@ -5,6 +5,8 @@
  * 2. https://collection.cloudinary.com/yqpz5zob/33b5681e6ed651b5511b56848d66a620
  */
 
+import { founderPhoto } from './founderPhotos';
+
 export interface BrandImage {
   id: string;
   localSrc: string;
@@ -226,7 +228,24 @@ export type BrandImageKey = keyof typeof BRAND_IMAGES;
 /**
  * Array list of all brand images for galleries and showcases
  */
-export const ALL_BRAND_IMAGES = [BRAND_IMAGES.founderPortrait, BRAND_IMAGES.founderPortraitEditorial, BRAND_IMAGES.countrysideEstate, BRAND_IMAGES.luxuryVillaInspection, BRAND_IMAGES.marketAnalysisPresentation, BRAND_IMAGES.executiveConsultingLounge, BRAND_IMAGES.dealClosingPartnership];
+export const ALL_BRAND_IMAGES: BrandImage[] = [
+  ['founder-portrait', 'Persönlich', 'founder'],
+  ['founder-property', 'Immobilien', 'property'],
+  ['founder-onsite', 'On-Site', 'property'],
+  ['hero-analysis', 'Analyse', 'strategy'],
+  ['hero-boardroom', 'Boardroom', 'strategy'],
+  ['hero-advisory', 'Advisory', 'strategy'],
+  ['hero-notary', 'Notariat', 'closing'],
+  ['journey-contact', 'Neuer Kontakt', 'strategy'],
+  ['journey-strategy', 'Strategie-Check', 'strategy'],
+  ['journey-network', 'Qualifizierter Investor', 'strategy'],
+  ['journey-consultation', 'Strategieberatung', 'strategy'],
+  ['journey-matching', 'Immobilienmatching', 'property'],
+  ['journey-partnership', 'Partnerschaft', 'closing'],
+  ['article-market', 'Marktanalyse', 'strategy'],
+  ['article-personal', 'Persönliche Perspektive', 'founder'],
+  ['consultation-cta', 'Persönliche Beratung', 'strategy'],
+].map(([id, title, category]) => ({ id, title, category: category as BrandImage['category'], localSrc: founderPhoto(id), cdnSrc: founderPhoto(id), subtitle: 'KI-generierte Illustration · Ioannis Vozicis', alt: `${title} · Ioannis Vozicis`, aspect: '3:2' }));
 
 /**
  * Helper to get image src with fallback to CDN if local isn't loaded

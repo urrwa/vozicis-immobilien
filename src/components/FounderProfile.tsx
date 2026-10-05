@@ -14,6 +14,7 @@ import {
   Coins
 } from 'lucide-react';
 import { BRAND_IMAGES } from '../data/brandAssets';
+import { FOUNDER_PHOTOS } from '../data/founderPhotos';
 
 interface FounderProfileProps {
   onOpenConsultation: () => void;
@@ -33,21 +34,21 @@ export const FounderProfile: React.FC<FounderProfileProps> = ({
     {
       id: 'editorial',
       label: 'Persönlich',
-      image: BRAND_IMAGES.founderPortraitEditorial.localSrc,
+      image: FOUNDER_PHOTOS.profile[0],
       fallback: BRAND_IMAGES.founderPortraitEditorial.cdnSrc,
       caption: 'Ihr Ansprechpartner: Ioannis Vozicis'
     },
     {
       id: 'executive',
       label: 'Immobilien',
-      image: BRAND_IMAGES.luxuryVillaInspection.localSrc,
+      image: FOUNDER_PHOTOS.profile[1],
       fallback: BRAND_IMAGES.luxuryVillaInspection.cdnSrc,
       caption: 'Persönlich vor Ort'
     },
     {
       id: 'onsite',
       label: 'On-Site',
-      image: BRAND_IMAGES.countrysideEstate.localSrc,
+      image: FOUNDER_PHOTOS.profile[2],
       fallback: BRAND_IMAGES.countrysideEstate.cdnSrc,
       caption: 'Bundesweite Vor-Ort-Begutachtung'
     }

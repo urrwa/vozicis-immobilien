@@ -1,5 +1,9 @@
 # Section photography
 
+## Founder photo update — 5 October 2026
+
+Sixteen distinct reference-based AI editorial photos now cover four hero views, six Journey stages, three founder-profile views, two article covers and the consultation CTA. Built-in image_gen was used with the supplied `public/images/brand/09.png` as the identity reference. Outputs live in `public/images/founder-natural/`; complete prompts are in `FOUNDER-PHOTO-PROMPTS.json`. These are illustrative scenes, not documentary evidence of meetings, site visits or transactions. The updated gallery labels them as AI-generated illustrations. No founder image repeats across primary section placements; a card and its own detail view intentionally share their image.
+
 Section photos were restored at the user's request on 4 October 2026. Mapping, bilingual alt text and focal points are maintained in `src/data/sectionPhotos.ts`. Existing founder imagery remains from the supplied brand collection.
 
 Stock photos illustrate topics, not actual clients, advisers or listed properties. Every opportunity photo carries a German/English illustrative-image label, including in the detail modal.

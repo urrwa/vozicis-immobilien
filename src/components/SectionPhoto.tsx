@@ -1,5 +1,5 @@
 import { useLanguage } from '../i18n/LanguageContext';
-import { SECTION_PHOTOS } from '../data/sectionPhotos';
+import { SECTION_PHOTOS, type SectionPhotoAsset } from '../data/sectionPhotos';
 
 export function SectionPhoto({ group, index = 0, illustrative = false }: {
   group: keyof typeof SECTION_PHOTOS;
@@ -7,7 +7,7 @@ export function SectionPhoto({ group, index = 0, illustrative = false }: {
   illustrative?: boolean;
 }) {
   const { language } = useLanguage();
-  const photo = SECTION_PHOTOS[group][index] ?? SECTION_PHOTOS[group][0];
+  const photo: SectionPhotoAsset = SECTION_PHOTOS[group][index] ?? SECTION_PHOTOS[group][0];
   return <>
     <img src={photo.src} alt={language === 'en' ? photo.en : photo.de}
       loading={group === 'journey' ? 'eager' : 'lazy'} decoding="async" className="absolute inset-0 h-full w-full object-cover"
