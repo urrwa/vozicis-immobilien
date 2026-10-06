@@ -23,12 +23,12 @@ export const SECTION_PHOTOS = {
     stock(7644148, 'Handschlag bei einer vertraulichen Partnerschaftsvereinbarung', 'Handshake at a confidential partnership agreement'),
   ],
   journey: [
-    { src: '/images/founder-natural/journey-contact.png', de: 'Erstkontakt und Orientierungsgespräch', en: 'Initial contact and orientation meeting', position: '50% 30%' },
-    { src: '/images/founder-natural/journey-strategy.png', de: 'Strukturierter Strategie-Check mit Finanzprofil', en: 'Structured strategy check with financial profile', position: '50% 25%' },
-    { src: '/images/founder-natural/journey-network.png', de: 'Aufnahme in das exklusive Investorennetzwerk', en: 'Joining the exclusive investor network', position: '50% 30%' },
-    { src: '/images/founder-natural/journey-consultation.png', de: 'Persönliches Beratungsgespräch und Vermögensplanung', en: 'Personal consultation and wealth planning', position: '50% 25%' },
-    { src: '/images/founder-natural/journey-matching.png', de: 'Objektbesichtigung und Due-Diligence vor Ort', en: 'Property viewing and on-site due diligence', position: '50% 25%' },
-    { src: '/images/founder-natural/journey-partnership.png', de: 'Ioannis Vozicis begrüßt einen langjährigen Investmentpartner', en: 'Ioannis Vozicis welcoming a long-term investment partner', position: '50% 30%' },
+    { src: '/images/sections/journey-01-contact.jpg', de: 'Erstkontakt und Orientierungsgespräch', en: 'Initial contact and orientation meeting', position: '50% 30%' },
+    { src: '/images/sections/journey-01-contact.jpg', de: 'Strukturierter Strategie-Check mit Finanzprofil', en: 'Structured strategy check with financial profile', position: '50% 25%' },
+    { src: '/images/sections/journey-03-network.jpg', de: 'Aufnahme in das exklusive Investorennetzwerk', en: 'Joining the exclusive investor network', position: '50% 30%' },
+    { src: '/images/sections/journey-04-consultation.jpg', de: 'Persönliches Beratungsgespräch und Vermögensplanung', en: 'Personal consultation and wealth planning', position: '50% 25%' },
+    { src: '/images/sections/journey-05-viewing.jpg', de: 'Objektbesichtigung und Due-Diligence vor Ort', en: 'Property viewing and on-site due diligence', position: '50% 25%' },
+    { src: '/images/sections/journey-06-handover.jpg', de: 'Schlüsselübergabe und Partnerschaft', en: 'Key handover and long-term partnership', position: '50% 30%' },
   ],
   articles: [
     stock(7109240, 'Prüfung von Zahlen und Unterlagen zur Vermögensstrategie', 'Reviewing figures and documents for wealth strategy'),

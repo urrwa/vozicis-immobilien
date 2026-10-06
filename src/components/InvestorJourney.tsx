@@ -28,7 +28,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Diskrete Kontaktaufnahme über Empfehlungen oder eine gezielte Anfrage. Wir klären in wenigen Momenten, ob ein gegenseitiger strategischer Werteabgleich zwischen Investor und VOZICIS IMMOBILIEN besteht.',
       deliverable: 'Unverbindliche gegenseitige Orientierung & Erst-Einordnung',
       badge: 'Diskret & vertraulich',
-      activeImg: '/images/founder-natural/journey-contact.png',
+      activeImg: '/images/sections/journey-01-contact.jpg',
       activePos: '50% 30%',
     },
     {
@@ -49,9 +49,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Nach positiver Passung werden Sie in das persönliche Partnernetzwerk von Ioannis Vozicis aufgenommen. Sie erhalten Vorab-Zugriff auf Off-Market Opportunitäten vor jeder öffentlichen Streuung.',
       deliverable: 'Priorisierter Zugang zum Off-Market Dealflow',
       badge: 'Exklusiver Kreis',
-      activeImg: '',
+      activeImg: '/images/sections/journey-03-network.jpg',
       activePos: '50% 30%',
-      visualType: 'infographic-network' as const,
     },
     {
       step: '04',
@@ -60,7 +59,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Im persönlichen Gespräch besprechen wir Ihre Vermögensarchitektur, Liquiditätsplanung und Finanzierungsstruktur im Detail. Wir kalkulieren Zinsszenarien und steuerliche Netto-Effekte durch.',
       deliverable: 'Individuelle Immobilien- & Steuerstrategie',
       badge: 'Persönliche Begleitung',
-      activeImg: '/images/founder-natural/journey-consultation.png',
+      activeImg: '/images/sections/journey-04-consultation.jpg',
       activePos: '50% 25%',
     },
     {
@@ -70,7 +69,7 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Erst jetzt präsentieren wir konkrete Objekte, die exakt zu Ihrem Profil passen: Ob KfW-40 Neubau mit Sonder-AfA, denkmalgeschützte Sanierung mit Spitzensteuersatzhebel oder rentables Wohnportfolio.',
       deliverable: 'Vollständige Due-Diligence Dokumentation',
       badge: 'Strenge Vorselektion',
-      activeImg: '/images/founder-natural/journey-matching.png',
+      activeImg: '/images/sections/journey-05-viewing.jpg',
       activePos: '50% 35%',
     },
     {
@@ -80,9 +79,8 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Begleitung bei Bankfinanzierung, Notartermin und Objektübergabe. Wir bleiben auch nach dem Kauf Ihr strategischer Ansprechpartner für Wertsteigerungen, Refinanzierungen und Folgechancen.',
       deliverable: 'Langfristige Begleitung & Re-Investment Betreuung',
       badge: 'Dauerhafte Partnerschaft',
-      activeImg: '',
+      activeImg: '/images/sections/journey-06-handover.jpg',
       activePos: '50% 30%',
-      visualType: 'infographic-partnership' as const,
     }
   ];
 
