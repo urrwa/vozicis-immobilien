@@ -1,12 +1,10 @@
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useLanguage } from '../i18n/LanguageContext';
-import { ALL_BRAND_IMAGES } from '../data/brandAssets';
 import React, { useState, useEffect } from 'react';
-import { 
-  Menu, 
-  X, 
-  ArrowRight,
-  Camera
+import {
+  Menu,
+  X,
+  ArrowRight
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -96,16 +94,6 @@ export const Header: React.FC<HeaderProps> = ({
               href="#wissen" 
               className="hover:text-white transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 hover:after:w-full after:h-[2px] after:bg-[#D6AE70] after:transition-all"
             >{t("Insights")}</a>
-            {onOpenLookbook && (
-              <button
-                onClick={onOpenLookbook}
-                className="text-[#D6AE70] hover:text-[#E2C492] transition-colors cursor-pointer flex items-center gap-1.5 pl-3 border-l border-[#162744]"
-              >
-                <Camera className="w-3.5 h-3.5" />
-                <span>{t("Impressionen")}</span>
-                <span className="px-1.5 py-0.2 rounded text-[9px] bg-[#D6AE70]/15 border border-[#D6AE70]/30 font-semibold font-mono">{t(ALL_BRAND_IMAGES.length)}</span>
-              </button>
-            )}
           </nav>
 
           {/* Right-Side CTA: Strategie-Check */}
@@ -165,18 +153,6 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={() => setMobileMenuOpen(false)}
                 className="py-1.5 border-b border-[#162744]/60 hover:text-white"
               >{t("Insights")}</a>
-              {onOpenLookbook && (
-                <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenLookbook();
-                  }}
-                  className="py-1.5 text-left text-amber-300 flex items-center justify-between"
-                >
-                  <span>{t("Brand-Impressionen")}</span>
-                  <span className="px-2 py-0.5 rounded text-[10px] bg-amber-400/20 text-amber-200">{t(ALL_BRAND_IMAGES.length)}{t(" Bilder")}</span>
-                </button>
-              )}
             </nav>
 
             <div className="pt-2 flex flex-col gap-2">
