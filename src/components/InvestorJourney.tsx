@@ -1,5 +1,6 @@
 import { SectionPhoto } from './SectionPhoto';
 import { useLanguage } from '../i18n/LanguageContext';
+import { StrategyCheckInfographic, InvestorNetworkInfographic, PartnershipJourneyInfographic } from './JourneyInfographics';
 import React, { useState } from 'react';
 import {
   Sparkles
@@ -37,8 +38,9 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Über unseren strukturierten Fragebogen erfassen Sie Zielrendite, Zeithorizont, Eigenkapitalspanne und steuerliche Präferenzen (z. B. degressive AfA, Denkmal § 7i, vGmbH-Thesaurierung).',
       deliverable: 'Automatische Profilauswertung & Eignungsmatrix',
       badge: 'Kostenfrei & sofort',
-      activeImg: '/images/founder-natural/journey-strategy.png',
+      activeImg: '',
       activePos: '50% 25%',
+      visualType: 'infographic-strategy' as const,
     },
     {
       step: '03',
@@ -47,8 +49,9 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Nach positiver Passung werden Sie in das persönliche Partnernetzwerk von Ioannis Vozicis aufgenommen. Sie erhalten Vorab-Zugriff auf Off-Market Opportunitäten vor jeder öffentlichen Streuung.',
       deliverable: 'Priorisierter Zugang zum Off-Market Dealflow',
       badge: 'Exklusiver Kreis',
-      activeImg: '/images/founder-natural/journey-network.png',
+      activeImg: '',
       activePos: '50% 30%',
+      visualType: 'infographic-network' as const,
     },
     {
       step: '04',
@@ -77,8 +80,9 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
       description: 'Begleitung bei Bankfinanzierung, Notartermin und Objektübergabe. Wir bleiben auch nach dem Kauf Ihr strategischer Ansprechpartner für Wertsteigerungen, Refinanzierungen und Folgechancen.',
       deliverable: 'Langfristige Begleitung & Re-Investment Betreuung',
       badge: 'Dauerhafte Partnerschaft',
-      activeImg: '/images/founder-natural/journey-partnership.png',
+      activeImg: '',
       activePos: '50% 30%',
+      visualType: 'infographic-partnership' as const,
     }
   ];
 
@@ -115,14 +119,22 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
                 onClick={() => setSelectedStep(idx)}
                 onMouseEnter={() => setSelectedStep(idx)}
                 className={`relative min-w-0 overflow-hidden rounded-[24px] border text-left transition-all duration-500 focus-visible:outline-2 focus-visible:outline-[#D6AE70] ${active ? 'flex-[3] border-[#D6AE70]' : 'flex-1 border-[#162744] hover:border-[#D6AE70]/60'}`}>
-                {active ? (
+                {stage.visualType === 'infographic-strategy' ? (
+                  <StrategyCheckInfographic collapsed={!active} />
+                ) : stage.visualType === 'infographic-network' ? (
+                  <InvestorNetworkInfographic collapsed={!active} />
+                ) : stage.visualType === 'infographic-partnership' ? (
+                  <PartnershipJourneyInfographic collapsed={!active} />
+                ) : active ? (
                   <img src={stage.activeImg} alt={t(stage.title)} loading="eager" decoding="async"
                     className="absolute inset-0 h-full w-full object-cover"
                     style={{ objectPosition: stage.activePos }} />
                 ) : (
                   <SectionPhoto group="journey" index={idx} />
                 )}
-                <div className={`absolute inset-0 transition-opacity ${active ? 'bg-gradient-to-t from-[#050B16]/70 via-[#050B16]/20 to-transparent opacity-80' : 'bg-[#050B16]/50'}`} />
+                {!stage.visualType && (
+                  <div className={`absolute inset-0 transition-opacity ${active ? 'bg-gradient-to-t from-[#050B16]/70 via-[#050B16]/20 to-transparent opacity-80' : 'bg-[#050B16]/50'}`} />
+                )}
                 {active ? <>
                   <span className="absolute top-6 left-5 rounded-full bg-[#050B16]/85 px-3 py-1 text-[10px] text-[#D6AE70] font-mono">{t('STUFE ')}{stage.step} · {t(stage.badge)}</span>
                   <div className="absolute bottom-6 left-5 right-5 flex items-start gap-3">
@@ -130,8 +142,10 @@ export const InvestorJourney: React.FC<InvestorJourneyProps> = ({
                     <div><div className="text-xl font-bold text-white">{t(stage.title)}</div><div className="mt-1 text-xs text-[#D6AE70]">{t(stage.subtitle)}</div></div>
                   </div>
                 </> : <>
-                  <span className="absolute top-4 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-[#D6AE70]/60" />
-                  <span className="absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-[0.18em] text-white/80"><span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>{t(stage.title)}</span></span>
+                  {!stage.visualType && <>
+                    <span className="absolute top-4 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-[#D6AE70]/60" />
+                    <span className="absolute inset-0 flex items-center justify-center text-[10px] uppercase tracking-[0.18em] text-white/80"><span style={{ writingMode: 'vertical-rl', transform: 'rotate(180deg)' }}>{t(stage.title)}</span></span>
+                  </>}
                   <span className="absolute bottom-5 left-1/2 -translate-x-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-[#050B16]/85 text-xs text-[#B9C6D7]">{stage.step}</span>
                 </>}
               </button>;
