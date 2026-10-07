@@ -128,15 +128,6 @@ export const FounderProfile: React.FC<FounderProfileProps> = ({
                   ))}
                 </div>
 
-                {onOpenLookbook && (
-                  <button
-                    onClick={onOpenLookbook}
-                    className="p-2 rounded-xl bg-[#050B16]/80 hover:bg-[#D6AE70]/20 text-[#8B9CB3] hover:text-[#D6AE70] backdrop-blur-md border border-[#162744] transition-colors cursor-pointer"
-                    title={t("Brand-Lookbook öffnen")}
-                  >
-                    <Camera className="w-3.5 h-3.5" />
-                  </button>
-                )}
               </div>
 
               {/* Portrait Frame */}
